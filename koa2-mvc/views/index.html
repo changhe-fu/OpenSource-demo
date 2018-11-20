@@ -1,0 +1,127 @@
+{% extends "base.html" %} {% block main %}
+<div class="display-none">
+    <p class="orange">在一瞬间拥有百万种可能，是继续睡或面对寒冷</p>
+    <a href>文字链接</a>
+    <div style="padding: 20px;font-size: 22px;line-height: 36px;letter-spacing: 2px;">
+        <select>
+            <option disabled>选项1</option>
+            <option>选项2</option>
+            <option>选项3</option>
+            <option selected>选项4</option>
+            <option>选项5</option>
+            <option>选项6</option>
+        </select>
+    </div>
+    <input type="checkbox" id="switch">
+    <label class="ui-switch" for="switch"></label>
+</div>
+
+
+<main class="show-main flex-column-center">
+    <section class="flex-around">
+        <dl>
+            <dt>base</dt>
+            <dd>
+                <a target="_blank" href="http://www.w3school.com.cn/tcpip/index.asp">TCP/IP（针对因特网的通信协议）</a>
+            </dd>
+        </dl>
+
+        <dl>
+            <dt>超文本标记语言</dt>
+            <dd>
+                <a target="_blank" href="http://www.w3school.com.cn/html/index.asp">HTML（超文本标记语言）</a>
+            </dd>
+            <dd>
+                <a target="_blank" href="http://www.w3school.com.cn/xhtml/index.asp">XHTML（更严谨更纯净的 HTML 版本）</a>
+            </dd>
+            <dd>
+                <a target="_blank" href="http://www.w3school.com.cn/html5/index.asp">HTML5（下一代的 HTML）</a>
+            </dd>
+        </dl>
+
+        <dl>
+            <dt>层叠样式表</dt>
+            <dd>
+                <a target="_blank" href="http://www.w3school.com.cn/css/index.asp">CSS（层叠样式表）</a>
+            </dd>
+            <dd>
+                <a target="_blank" href="http://www.w3school.com.cn/css3/index.asp">CSS3（最新的 CSS 标准）</a>
+            </dd>
+        </dl>
+
+        <dl>
+            <dt>JavaScript</dt>
+
+            <dd>
+                <a target="_blank" href="http://javascript.ruanyifeng.com/">JavaScript（一种直译式脚本语言，是一种动态类型、弱类型、基于原型的语言，内置支持类型。）</a>
+            </dd>
+            <dd>
+                <a target="_blank" href="http://es6.ruanyifeng.com/#docs/intro">ECMAScript 6（JavaScript 语言的下一代标准）</a>
+            </dd>
+        </dl>
+
+    </section>
+
+    <section class="flex-around">
+
+        <dl>
+            <dt>flex</dt>
+            <dd>
+                <a target="_blank" href="http://www.ruanyifeng.com/blog/2015/07/flex-examples.html">flex 布局（弹性布局）</a>
+            </dd>
+        </dl>
+
+        <dl>
+            <dt>canvas</dt>
+            <dd>
+                <a target="_blank" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Canvas_API/Tutorial/Basic_usage">Canvas_API</a>
+            </dd>
+            <dd>
+                <a target="_blank" href="https://blog.csdn.net/u012468376/article/details/73350998">学习HTML5 Canvas这一篇文章就够了</a>
+            </dd>
+        </dl>
+
+        <dl>
+            <dt>svg（可缩放矢量图形）</dt>
+            <dd>
+                <a target="_blank" href="http://javascript.ruanyifeng.com/htmlapi/svg.html">svg</a>
+            </dd>
+            <dd>
+                <a target="_blank" href="http://www.ruanyifeng.com/blog/2018/08/svg.html">阮一峰svg入门</a>
+            </dd>
+            <dd>
+                <a target="_blank" href="https://www.w3cplus.com/svg/svg-introduction.html">SVG 快速入门</a>
+            </dd>
+            <dd>
+                <a target="_blank" href="https://www.w3cplus.com/svg/svg-animation.html">svg 动画</a>
+            </dd>
+        </dl>
+
+        <dl>
+            <dt>frame</dt>
+            <dd>
+                <a target="_blank" href="https://cn.vuejs.org/v2/guide/"> Vue（一套用于构建用户界面的渐进式框架）</a>
+            </dd>
+            <dd>
+                <a target="_blank" href="https://www.angular.cn/"> Angular（一套框架，多种平台 移动端 & 桌面端）</a>
+            </dd>
+            <dd>
+                <a target="_blank" href="http://react.yubolun.com/docs/hello-world.html"> React（用于构建用户界面的 JavaScript 库）</a>
+            </dd>
+            <dd>
+                <a target="_blank" href="https://github.com/Tencent/omi/blob/master/README.CN.md"> Omi（下一代 Web 框架，去万物糟粕，合精华为一）</a>
+            </dd>
+            <dd>
+                <a target="_blank" href="https://l-ui.com/content/about/design.html">LULU UI（你问我有什么不同？ 只是更自由，更纯粹，和用户走得更近。）</a>
+            </dd>
+            <dd>
+                <a target="_blank" href="http://element-cn.eleme.io/#/zh-CN/component/installation">Element UI（一套为开发者、设计师和产品经理准备的基于 Vue 2.0 的桌面端组件库）</a>
+            </dd>
+        </dl>
+    </section>
+</main>
+<script>
+    seajs.use(['common/ui/Select.js'], function (select) {
+        $('select').selectMatch();
+    });
+</script> {% endblock %}

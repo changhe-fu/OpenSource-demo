@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="/static/css/main.css" />
+    <script src="/static/js/sea.js"></script>
+    <script src="/static/js/sea_css.js"></script>
+    <script src="/static/js/css3transform.js"></script>
+    <script src="/static/js/tween.js"></script>
+    <script src="/static/js/jquery.js"></script>
+
+    <script>
+      seajs.use("//qidian.gtimg.com/lulu/theme/peak/css/common/ui.css");
+      seajs.config({
+        base: "/static/peak/js"
+      });
+    </script>
+  </head>
+
+  <body>
+    <header id="head" class="base-header">
+      <section>
+        <h1>hpcode</h1>
+        <p>happy coding or help coding ...</p>
+      </section>
+      <nav class="base-nav">
+        <ul>
+          <li><a href="./index">index</a></li>
+          <li><a href="./togif">toGif</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main class="base-main">{% block main %} {% endblock %}</main>
+    <footer class="base-footer flex-column-center">
+      <nav class="base-foot-nav flex-around">
+        <dl>
+          <dt>Blog</dt>
+          <dd>
+            <a target="_blank" href="https://blog.csdn.net/qq_39759115">
+              <img src="/static/images/let.jpg" alt="_let" />
+              <p>_let</p>
+            </a>
+          </dd>
+        </dl>
+        <dl>
+          <dt>Reading</dt>
+          <dd><a target="_blank" href="http://www.ruanyifeng.com/blog/">阮一峰</a></dd>
+          <dd><a target="_blank" href="https://www.zhangxinxu.com/wordpress/">张鑫旭</a></dd>
+          <dd><a target="_blank" href="https://www.liaoxuefeng.com/">廖雪峰</a></dd>
+          <dd><a target="_blank" href="https://github.com/justjavac/the-front-end-knowledge-you-may-not-know/issues">你可能不知道的前端知识点</a></dd>
+        </dl>
+
+        <dl>
+          <dt>JavaScript</dt>
+          <dd><a target="_blank" href="http://javascript.ruanyifeng.com/">JavaScript 标准参考教程</a></dd>
+          <dd><a target="_blank" href="http://es6.ruanyifeng.com">ECMAScript 6 入门</a></dd>
+          <dd><a target="_blank" href="https://github.com/Let-river/You-Dont-Know-JS">You-Dont-Know-JS</a></dd>
+          <dd><a target="_blank" href="https://github.com/llh911001/mostly-adequate-guide-chinese">JS 函数式编程指南中文版</a></dd>
+          <dd><a target="_blank" href="https://github.com/xcatliu/typescript-tutorial">TypeScript 入门教程</a></dd>
+          <dd><a target="_blank" href="https://github.com/alsotang/node-lessons">Node.js 包教不包会</a></dd>
+        </dl>
+
+        <dl>
+          <dt>NodeJs</dt>
+          <dd><a target="_blank" href="https://github.com/chenshenhai/koa2-note">Koa2进阶学习笔记</a></dd>
+        </dl>
+
+        <dl>
+          <dt>github</dt>
+          <dd>
+            <a target="_blank" href="https://github.com/Let-river">
+              <img
+                width="75"
+                src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiIGlkPSJMYXllcl8xIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjQwcHgiIGhlaWdodD0iNDBweCIgdmlld0JveD0iMTIgMTIgNDAgNDAiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMTIgMTIgNDAgNDAiIHhtbDpzcGFjZT0icHJlc2VydmUiPjxwYXRoIGZpbGw9IiMzMzMzMzMiIGQ9Ik0zMiAxMy40Yy0xMC41IDAtMTkgOC41LTE5IDE5YzAgOC40IDUuNSAxNS41IDEzIDE4YzEgMC4yIDEuMy0wLjQgMS4zLTAuOWMwLTAuNSAwLTEuNyAwLTMuMiBjLTUuMyAxLjEtNi40LTIuNi02LjQtMi42QzIwIDQxLjYgMTguOCA0MSAxOC44IDQxYy0xLjctMS4yIDAuMS0xLjEgMC4xLTEuMWMxLjkgMC4xIDIuOSAyIDIuOSAyYzEuNyAyLjkgNC41IDIuMSA1LjUgMS42IGMwLjItMS4yIDAuNy0yLjEgMS4yLTIuNmMtNC4yLTAuNS04LjctMi4xLTguNy05LjRjMC0yLjEgMC43LTMuNyAyLTUuMWMtMC4yLTAuNS0wLjgtMi40IDAuMi01YzAgMCAxLjYtMC41IDUuMiAyIGMxLjUtMC40IDMuMS0wLjcgNC44LTAuN2MxLjYgMCAzLjMgMC4yIDQuNyAwLjdjMy42LTIuNCA1LjItMiA1LjItMmMxIDIuNiAwLjQgNC42IDAuMiA1YzEuMiAxLjMgMiAzIDIgNS4xYzAgNy4zLTQuNSA4LjktOC43IDkuNCBjMC43IDAuNiAxLjMgMS43IDEuMyAzLjVjMCAyLjYgMCA0LjYgMCA1LjJjMCAwLjUgMC40IDEuMSAxLjMgMC45YzcuNS0yLjYgMTMtOS43IDEzLTE4LjFDNTEgMjEuOSA0Mi41IDEzLjQgMzIgMTMuNHoiLz48L3N2Zz4="
+                alt="github image"
+              />
+              <p>Let-river</p>
+            </a>
+          </dd>
+        </dl>
+      </nav>
+    </footer>
+    <script>
+      var element = document.querySelector("h1");
+      Transform(element);
+      element.originY = 10;
+      element.skewX = -20;
+
+      var Tween = createjs.Tween,
+        sineInOutEase = createjs.Ease.sineInOut;
+      Tween.get(element, { loop: true })
+        .to({ scaleY: 0.8 }, 450, sineInOutEase)
+        .to({ scaleY: 1 }, 450, sineInOutEase);
+      Tween.get(element, { loop: true })
+        .to({ skewX: 20 }, 900, sineInOutEase)
+        .to({ skewX: -20 }, 900, sineInOutEase);
+    </script>
+  </body>
+</html>

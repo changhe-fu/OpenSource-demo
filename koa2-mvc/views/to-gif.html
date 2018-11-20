@@ -1,0 +1,44 @@
+{% extends "base.html" %} {% block main %}
+<style>
+  .togifPage {
+    min-height: calc(50vh - 40px);
+    padding: 20px;
+    background: #f6f6f6;
+    color: #666;
+  }
+  .togifPage p {
+    margin: 15px 0;
+  }
+  .togifPage #canvas {
+    left: 10px;
+    top: 10px;
+    background: tansparent;
+  }
+  .togifPage #uploadPreview {
+    display: none;
+  }
+  .togifPage input {
+    top: 500px;
+  }
+  input[type="color"] {
+    opacity: 1;
+  }
+  #canvas {
+    border: 1px dashed #ddd;
+  }
+</style>
+<section class="togifPage">
+  <h4>字符雨合成gif图</h4>
+  <img id="uploadPreview" src="" alt="" /> <canvas width="200" height="200" id="canvas"></canvas>
+  <p id="characters" contenteditable="true">字符雨合成gif图</p>
+  <p><label>选择图片</label><input type="file" onchange="loadImageFile();" id="uploadImage" /></p>
+  <p><label>选择字符颜色</label><input type="color" id="color" /></p>
+  <p>使用正方形图片效果比较好,默认生成20帧,生成后右键另存为</p>
+  <p id="msg"></p>
+  <img src="" id="output" />
+</section>
+<script>
+  seajs.use("/static/js/gif.js");
+  seajs.use("/static/js/togif.js");
+</script>
+{% endblock %}

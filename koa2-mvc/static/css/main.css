@@ -1,0 +1,178 @@
+body,
+form,
+ul,
+ol,
+dl,
+dd,
+p {
+  margin: 0;
+}
+
+dl {
+  padding: 15px 20px;
+}
+
+dt {
+  margin-bottom: 8px;
+  padding: 3px 0;
+  font-size: 15px;
+  font-weight: 600;
+}
+dd {
+  padding: 3px 0;
+  line-height: 20px;
+  font-size: 14px;
+  color: #999;
+}
+
+li {
+  list-style: none;
+}
+
+a,
+a:hover {
+  text-decoration: none;
+}
+a,
+body,
+.dark {
+  color: #4c5161;
+}
+
+.blue,
+a.dark:hover {
+  color: #2486ff;
+}
+
+a:hover {
+  color: #0057c3;
+}
+
+.gray {
+  color: #a2a9b6;
+}
+
+.white {
+  color: #fff;
+}
+
+.green {
+  color: #01cf97;
+}
+
+.orange {
+  color: #f28c48;
+}
+
+.red {
+  color: #f4615c;
+}
+
+.light {
+  color: #f7f9fa;
+}
+
+.flex-left {
+  display: flex;
+  justify-content: flex-start;
+}
+.flex-around {
+  display: flex;
+  justify-content: space-around;
+}
+.flex-column-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.display-none {
+  display: none;
+}
+
+:root {
+  --main1--: #086ca2;
+  --main2--: #3c9dd0;
+  --main3--: #64aad0;
+  --main0--: #ff8b00;
+}
+/* -------- base.html --------- */
+
+.base-header {
+  min-height: 30vh;
+}
+.base-header section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  min-height: calc(30vh - 48px);
+  text-align: center;
+  color: whitesmoke;
+  background-color: #6699cc;
+  /* background-color: var(--main3--); */
+  overflow: hidden;
+}
+.base-header section h1 {
+  margin: 0;
+  padding-bottom: 15px;
+}
+.base-header .base-nav {
+  height: 48px;
+  line-height: 48px;
+  background-color: #ccc;
+  /* background-color: var(--main0--); */
+}
+.base-nav ul {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.base-nav ul li a {
+  display: inline-block;
+}
+.base-nav a {
+  color: #fff;
+}
+
+.base-nav .nav-active a {
+  color: #999;
+  background-color: #fcfcfc;
+}
+
+.base-main {
+  min-height: 50vh;
+}
+
+.base-footer {
+  min-height: 20vh;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: #aaa;
+  /* background-color: var(--main2--); */
+}
+.base-foot-nav dt {
+  /* border-bottom: 1px dashed #cfdefa; */
+  border-bottom: 1px solid white;
+  /* color: #666; */
+  color: #f6f6f6;
+}
+.base-foot-nav dl {
+  padding: 0 10px;
+}
+
+.base-foot-nav dd a {
+  color: #e6e6e6;
+}
+
+/* -------- index.html --------- */
+.show-main {
+  min-height: 50vh;
+  padding: 20px 20px;
+  box-sizing: border-box;
+}
+.show-main dl {
+  width: 20%;
+  margin: 20px;
+  background-color: #f6f6f6;
+}
