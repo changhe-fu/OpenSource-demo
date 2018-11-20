@@ -1,6 +1,8 @@
 # 项目文件介绍
 
-### middleware 文件夹 （存放所有的中间件）
+## middleware 文件夹
+
+存放所有的中间件
 
 中间件介绍：
 
@@ -10,7 +12,9 @@
 
 - templating.js -- 给 ctx 对象绑定一个 render(view, model)的方法
 
-### db 文件夹 （存放数据库相关文件）
+## db 文件夹 
+
+存放数据库相关文件
 
 - models -- 表 model
 
@@ -22,7 +26,28 @@
 
 - init-data.js -- 初始化数据库数据
 
-### static 文件夹 （存放静态资源）
+## static 文件夹 
 
-### views 文件夹 （存放模板页面）
+存放静态资源
+
+## views 文件夹 
+
+存放模板页面
+
+## 运行项目
+
+1. 安装依赖
+
+```
+	npm install
+```
+
+2. 修改 db 文件夹下的 config.js 文件中的数据库配置
+
+3. 启动项目
+
+```
+	npm start
+```
+
 

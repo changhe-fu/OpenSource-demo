@@ -1,8 +1,9 @@
 var config = {
-  database: "koa_demo",
+  database: "koa_mvc",
   username: "root",
-  password: "darongshutech@123456",
-  host: "123.207.234.111"
+  password: "password",
+  host: "0.0.0.0",
+  dialect: "mysql" // 默认为 mysql
 };
 
 module.exports = config;
