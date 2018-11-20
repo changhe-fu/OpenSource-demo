@@ -1,7 +1,7 @@
 module.exports = {
   "GET /": async (ctx, next) => {
     ctx.render("index.html", {
-      title: "Sign In"
+      title: "hecode"
     });
   },
   "GET /register": async (ctx, next) => {
