@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>data to image demo</title>
+</head>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<body>
+    <header>
+        <h1>data to image demo</h1>
+    </header>
+    <main>
+        <pre>
+            {
+                head: 'demo head',
+                message: 'this is a data-to-image demo'
+            }
+        </pre>
+        <button id="toImage">生成</button>
+        <pre id="dataShow">
+        </pre>
+        <button id="toData">解析</button>
+    </main>
+</body>
+
+<script>
+
+    var imgUrl = null;
+    document.querySelector("#toImage").addEventListener("click", function () {
+
+        var myObjData = {
+            head: 'hello colleagues',
+            message: 'Winter is coming, please keep warm.'
+        };
+
+        // 1. 将对象转换为字节数组
+
+        var strData = JSON.stringify(myObjData);
+
+        // TextEncoder 将输入的代码流指向一个字节流并输出
+        // TextEncoder.encode() 返回包含使用此特定TextEncoder对象的方法编码的文本的Uint8Array。
+        // Uint8Array 数组类型表示一个8位无符号整型数组，创建时内容被初始化为0。
+        var uint8array = (new TextEncoder('utf-8')).encode(strData);
+
+        // 方形图像的大小，该大小足以存储这些数据。
+        var dataSize = Math.ceil(Math.sqrt(uint8array.length / 3));
+        console.log("uint8array", uint8array); // [123,34,104, 101,97,100...]
+
+        // 2. 将字节数组转换为图像数据（需要无损格式的来存储图像数据，因此选择PNG作为输出格式）
+
+        // 8位无符号整型固定数组，类型化数组表示一个由值固定在0-255区间的8位无符号整型组成的数组
+        var paddedData = new Uint8ClampedArray(dataSize * dataSize * 4);
+        var idx = 0;
+        for (var i = 0; i < uint8array.length; i += 3) {
+            // subarray 方法是对于 TypedArray 数组的一部分，再建立一个新的视图。
+            var subArray = uint8array.subarray(i, i + 3);
+
+            // TypedArray 数组的 set 方法用于复制数组（普通数组或 TypedArray 数组），也就是将一段内容完全复制到另一段内存。
+            paddedData.set(subArray, idx);
+            paddedData.set([255], idx + 3);
+
+            idx += 4;
+        }
+        console.log("paddedData", paddedData); // [123,34,104,255, 101,97,100,255...]
+
+        var imageData = new ImageData(paddedData, dataSize, dataSize);
+
+        // 3. 绘制图像
+
+        var imgSize = 256;
+        var canvas = document.createElement('canvas');
+        canvas.width = canvas.height = imgSize;
+        var ctx = canvas.getContext('2d');
+        ctx.fillStyle = '#AA0000';
+        ctx.fillRect(0, 0, imgSize, imgSize);
+
+        ctx.fillStyle = 'rgb(' + dataSize + ',0,0)';
+        ctx.fillRect(0, 0, 1, 1);
+
+        ctx.putImageData(imageData, 0, 1);
+
+        imgUrl = canvas.toDataURL();
+
+        // 4. 保存图像
+
+        // 需要无损格式的来存储图像数据，因此选择PNG作为输出格式
+        $('body').append('<a id="hiddenLink" href="' + imgUrl +
+            '" style="display:none;" download="image.png">Download</a>');
+        var link = $('#hiddenLink')[0];
+        link.click();
+        link.remove();
+    });
+
+    document.querySelector("#toData").addEventListener("click", function () {
+        var img = new Image();
+
+        // 1. 加载
+
+        img.onload = function () {
+
+            // 2. 将图像绘制到画布
+
+            var imgSize = img.width;
+            var canvas = document.createElement('canvas');
+            canvas.width = canvas.height = imgSize;
+            var ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0);
+
+            // 3. 将像素转换为字节数组
+            var headerData = ctx.getImageData(0, 0, 1, 1);
+            var dataSize = headerData.data[0];
+
+            var imageData = ctx.getImageData(0, 1, dataSize, dataSize);
+            var paddedData = imageData.data;
+            var uint8array = new Uint8Array(paddedData.length / 4 * 3);
+
+            var idx = 0;
+            for (var i = 0; i < paddedData.length - 1; i += 4) {
+                var subArray = paddedData.subarray(i, i + 3);
+                uint8array.set(subArray, idx);
+                idx += 3;
+            }
+
+            var includeBytes = uint8array.length;
+            for (var i = uint8array.length - 1; i > 0; i--) {
+                if (uint8array[i] == 0) {
+                    includeBytes--;
+                }
+                else {
+                    break;
+                }
+            }
+            // 4. 解码字节数组
+            var data = uint8array.subarray(0, includeBytes);
+            var strData = (new TextDecoder('utf-8')).decode(data);
+
+            // 现在strData变量保存了编码到PNG图像中的原始字符串数据。
+            document.querySelector("#dataShow").innerHTML = strData;
+
+        };
+        img.src = imgUrl;
+    })
+</script>
+
+</html>

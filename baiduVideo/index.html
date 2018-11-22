@@ -1,0 +1,139 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <style>
+      /* .jwplayer .jw-icon-barlogo-new:before {
+      content: none;
+    }
+    .jw-icon-barlogo-new {
+      background: url("./baidu/logo.png") no-repeat;
+      background-position: center;
+    } */
+      #playercontainer {
+        margin: 0 auto;
+        max-width: 100%;
+      }
+      #playercontainer .jw-adv,
+      .jw-preview {
+        background-color: transparent;
+      }
+      #playercontainer .ad-class {
+        width: 300px !important;
+        height: 300px !important;
+      }
+      @media only screen and (max-width: 768px) {
+        #playercontainer {
+          width: 100% !important;
+          height: 300px !important;
+        }
+
+        #playercontainer .ad-class {
+          width: 200px !important;
+          height: 200px !important;
+        }
+      }
+    </style>
+    <script>
+      // 控制图片广告宽度和高度
+      (function() {
+        var browser = {
+          versions: (function() {
+            var u = navigator.userAgent,
+              app = navigator.appVersion;
+            return {
+              trident: u.indexOf("Trident") > -1, //IE内核
+              presto: u.indexOf("Presto") > -1, //opera内核
+              webKit: u.indexOf("AppleWebKit") > -1, //苹果、谷歌内核
+              gecko: u.indexOf("Gecko") > -1 && u.indexOf("KHTML") == -1, //火狐内核
+              mobile: !!u.match(/AppleWebKit.*Mobile.*/) || !!u.match(/AppleWebKit/), //是否为移动终端
+              ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+              android: u.indexOf("Android") > -1 || u.indexOf("Linux") > -1, //android终端或者uc浏览器
+              iPhone: u.indexOf("iPhone") > -1 || u.indexOf("Mac") > -1, //是否为iPhone或者QQHD浏览器
+              iPad: u.indexOf("iPad") > -1, //是否iPad
+              webApp: u.indexOf("Safari") == -1 //是否web应该程序，没有头部与底部
+            };
+          })(),
+          language: (navigator.browserLanguage || navigator.language).toLowerCase()
+        };
+
+        var isPC = browser.versions.android || browser.versions.iPhone || browser.versions.ios ? false : true;
+        var adWidth = isPC ? 400 : 200;
+        var adHight = isPC ? 300 : 150;
+
+        function reSizeAD() {
+          const isFooler = window.innerWidth <= 768;
+          // adWidth = isFooler ? 200 : 400;
+          // adHight = isFooler ? 150 : 300;
+          // window.ADWIDTH = adWidth; // 广告宽度
+          // window.ADHEIGHT = adHight; // 广告高度
+
+          window.ADWIDTH = window.ADHEIGHT = isFooler ? 200 : 300;
+          // console.log(window.ADWIDTH, window.ADHEIGHT);
+        }
+        reSizeAD();
+        window.onresize = reSizeAD;
+      })(window);
+    </script>
+  </head>
+
+  <body>
+    <main><div id="playercontainer"></div></main>
+    <script type="text/javascript" src="cyberplayer.js"></script>
+    <script type="text/javascript">
+      // api https://cloud.baidu.com/doc/MCT/WebSDKAPI.html#cyberplayer.3A.3AgetPlaylist
+      var player = cyberplayer("playercontainer").setup({
+        width: 900,
+        height: 448,
+        file: "rtmp://hwzbin.yunshicloud.com/y8kawn/g5181v", // <—rtmp直播地址
+        fallbackfile: "https://hwzbfee.yunshicloud.com/x7px03/x7px03/yh9zk3/y8kawn/g5181v.m3u8", // <— 备用播放地址，为了手机上能进行直播
+        autostart: true,
+        stretching: "uniform",
+        volume: 100,
+        controls: true,
+        controlbar: {
+          barLogo: false, // 不显示logo
+          barLogoUrl: "http://www.darongshutech.com/",
+          canDrag: true
+        },
+        rtmp: {
+          reconnecttime: 5, // rtmp直播的重连次数
+          bufferlength: 1 // 缓冲多少秒之后开始播放 默认1秒
+        },
+        imageAdvs: {
+          // 图片广告，低版本IE不支持
+          // start: {
+          //   // 开场广告
+          //   image: "https://img.sqydt.darongshutech.com/image_201811211205514797.png", // 广告图片地址
+          //   url: "https://cloud.baidu.com/product/vod.html", // 跳转url
+          //   time: 10 // 播放时长，单位：s
+          // },
+          pause: {
+            // 暂停广告
+            image: "https://img.sqydt.darongshutech.com/image_201811211205514797.png",
+            url: "https://cloud.baidu.com/product/lss.html"
+          },
+          end: {
+            // 结束广告
+            image: "https://img.sqydt.darongshutech.com/image_201811211205514797.png",
+            url: "https://cloud.baidu.com/solution/video_ai.html"
+          }
+        },
+        ak: "*********************" // 公有云平台注册即可获得accessKey
+      });
+
+      function $get(url, fn) {
+        // XMLHttpRequest对象用于在后台与服务器交换数据
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", url, true);
+        xhr.onreadystatechange = function() {
+          // readyState == 4说明请求已完成
+          if ((xhr.readyState == 4 && xhr.status == 200) || xhr.status == 304) {
+            // 从服务器获得数据
+            fn.call(this, xhr.responseText);
+          }
+        };
+        xhr.send();
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>直播</title>
+    <link href="./video-js.min.css" rel="stylesheet" />
+    <style>
+      .video {
+        width: 100%;
+        height: 30vh;
+      }
+
+      * {
+        padding: 0;
+        margin: 0;
+      }
+
+      .liveView {
+        position: relative;
+        background: #fff;
+      }
+
+      .selectWrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 20px;
+        line-height: 30px;
+        margin: 20px;
+        vertical-align: baseline;
+      }
+
+      .inputWrapper {
+        width: 500px;
+        margin: 0 auto;
+      }
+
+      .buttonWrapper {
+        text-align: center;
+      }
+
+      .live-title {
+        text-align: center;
+        padding: 3vh 3%;
+        font-size: 1.2rem;
+        font-weight: 600;
+      }
+
+      .live-content {
+        padding: 3vh 3%;
+        background: #f8f8f8;
+      }
+
+      .live-content p {
+        padding-bottom: 3vh;
+        line-height: 5vh;
+        text-indent: 2rem;
+        color: #666;
+      }
+
+      .live-content h4 {
+        /* text-align: center; */
+        padding-bottom: 3vh;
+        text-indent: 2rem;
+        color: #666;
+      }
+
+      .my-video-dimensions {
+        width: 100% !important;
+        height: 50vh !important;
+      }
+
+      /* .video-js .vjs-big-play-button {
+          font-size: 3em;
+          line-height: 1.5em;
+          height: 1.5em;
+          width: 1.5em !important;
+           display: none; 
+          position: absolute;
+          top: 0 !important;
+          left: 0 !important;
+          right: 0 !important;
+          bottom: 0 !important;
+          margin: auto !important;
+          padding: 0;
+          cursor: pointer;
+          opacity: 1;
+          border: 0.06666em solid #fff;
+          background-color: #2b333f;
+          background-color: rgba(43, 51, 63, 0.7);
+          border-radius: 1.5em !important;
+          transition: all 0.4s;
+        }  */
+      #ab {
+        position: absolute;
+        z-index: 999;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 50vh;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        user-select: none;
+        background-color: rgba(0, 0, 0, 0.2);
+      }
+      #ab > div {
+        width: 40vh;
+        height: auto;
+        /* background-color: #ffffff; */
+      }
+      #ab > div img {
+        width: 100%;
+        height: auto;
+        max-height: 100%;
+      }
+
+      #sponsorAd strong {
+        width: 76px;
+      }
+
+      #sponsorAd,
+      #sponsorFirm {
+        display: none;
+      }
+
+      #sponsorAd div,
+      #sponsorFirm div {
+        text-align: center;
+      }
+
+      #sponsorAd img {
+        width: 100%;
+        padding: 5px;
+        box-sizing: border-box;
+      }
+
+      #sponsorFirm img {
+        width: 25%;
+        height: auto;
+        padding: 5px;
+        box-sizing: border-box;
+      }
+
+      /* 768px 及以下 */
+      @media only screen and (max-width: 768px) {
+        .my-video-dimensions {
+          width: 100% !important;
+          height: 36vh !important;
+        }
+        .live-title {
+          line-height: 1.5;
+          font-size: 1rem;
+          font-weight: 600;
+        }
+        #ab {
+          height: 36vh;
+        }
+        #ab > div {
+          width: 25vh;
+          height: auto;
+          max-width: 200px;
+          max-height: 200px;
+          /* background-color: #ffffff; */
+        }
+        #sponsorAd img {
+          width: 100%;
+        }
+      }
+
+      /* 768px 及以上 */
+      @media only screen and (min-width: 768px) {
+        .my-video-dimensions {
+          width: 100% !important;
+          height: 50vh !important;
+        }
+        .live-title {
+          line-height: 1.5;
+          font-size: 1.2rem;
+          font-weight: 600;
+        }
+        #ab {
+          height: 50vh;
+        }
+        #ab > div {
+          width: 40vh;
+          height: auto;
+        }
+        #sponsorAd img {
+          width: 48%;
+        }
+      }
+
+      /* 992px 及以上 */
+      @media only screen and (min-width: 992px) {
+        #sponsorAd img {
+          width: 48%;
+        }
+      }
+
+      /* 1204px 及以上 */
+      @media only screen and (min-width: 1204px) {
+        #sponsorFirm img {
+          width: 20%;
+        }
+      }
+
+      /* 1366px 及以上 */
+      @media only screen and (min-width: 1366px) {
+        #sponsorAd img {
+          width: 31%;
+        }
+        #sponsorFirm img {
+          width: 16%;
+        }
+      }
+
+      /* 1799px 及以上 */
+      @media only screen and (min-width: 1799px) {
+        #sponsorAd img {
+          width: 24%;
+        }
+        #sponsorFirm img {
+          width: 12%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section style="width:100%;position: relative;">
+      <video id="my-video" class="video-js vjs-big-play-centered" width="100%" height="100%" class="video"></video>
+      <div id="ab">
+        <div><img id="adImg" src="" alt="广告" /></div>
+      </div>
+    </section>
+    <section>
+      <div class="live-title">四川省妇联十二届七次执委会议在成都召开</div>
+      <div class="live-content">
+        <p>四川省妇联十二届七次执委会议于7月30日在成都召开。会议学习传达了省委十一届三次全会精神，省委副书记邓小刚出席会议并作重要讲话。</p>
+        <h4 style="font-weight:600">他强调：</h4>
+        <p>全省各级妇联要进一步增强政治性，牢固树立“四个意识”、增强“四个自信”，坚决做到“两个维护”，始终在思想上政治上行动上同以习近平同志为核心的党中央保持高度一致，团结带领广大妇联群众坚定不移听党话跟党走，确保妇联工作沿着正确政治方向前进。</p>
+      </div>
+    </section>
+    <script src="./video.min.js"></script>
+    <script>
+      (function() {
+        var adDom = document.querySelector("#ab");
+
+        var myPlayer = videojs(document.querySelector(".video-js"), {
+          controls: true,
+          autoplay: false,
+          preload: "auto"
+        });
+        
+        myPlayer.src([{ type: "application/x-mpegURL", src: http://cyberplayerplay.kaywang.cn/cyberplayer/demo201711-L1.m3u8 }]); // 播放资源
+        myPlayer.poster("http://gcqq450f71eywn6bv7u.exp.bcevod.com/mda-hbqagik5sfq1jsai/mda-hbqagik5sfq1jsai.jpg");  // 预览图
+        
+        myPlayer.ready(function() {
+          this.on("play", function() {
+            adDom.style.display = "none";
+          });
+          this.on("pause", function() {
+            adDom.style.display = "flex";
+          });
+        });
+
+        adDom.addEventListener("click", function(e) {
+          if (e.target.getAttribute("id") == "ab") {
+            // 遮罩
+            e.target.style.display = "none";
+            myPlayer.play(); // 开始播放
+          } else {
+            // 广告
+            console.log("广告...");
+          }
+        });
+       
+        document.querySelector("#adImg").src = "https://bce.bdstatic.com/portal/img/product/lss/banner_117d201d.png"; // 暂停广告图
+      })();
+    </script>
+  </body>
+</html>
