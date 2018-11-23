@@ -4,18 +4,23 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <title>直播</title>
-    <link href="./video-js.min.css" rel="stylesheet" />
+    <link href="video-js.min.css" rel="stylesheet" />
     <style>
-      .video {
-        width: 100%;
-        height: 30vh;
-      }
-
       * {
         padding: 0;
         margin: 0;
       }
-
+      body {
+        background: url("./bg.png");
+      }
+      main {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .video {
+        width: 100%;
+        height: 30vh;
+      }
       .liveView {
         position: relative;
         background: #fff;
@@ -45,9 +50,11 @@
         padding: 3vh 3%;
         font-size: 1.2rem;
         font-weight: 600;
+        background-color: #fdfdfd;
       }
 
       .live-content {
+        min-height: 300px;
         padding: 3vh 3%;
         background: #f8f8f8;
       }
@@ -72,26 +79,26 @@
       }
 
       /* .video-js .vjs-big-play-button {
-          font-size: 3em;
-          line-height: 1.5em;
-          height: 1.5em;
-          width: 1.5em !important;
-           display: none; 
-          position: absolute;
-          top: 0 !important;
-          left: 0 !important;
-          right: 0 !important;
-          bottom: 0 !important;
-          margin: auto !important;
-          padding: 0;
-          cursor: pointer;
-          opacity: 1;
-          border: 0.06666em solid #fff;
-          background-color: #2b333f;
-          background-color: rgba(43, 51, 63, 0.7);
-          border-radius: 1.5em !important;
-          transition: all 0.4s;
-        }  */
+            font-size: 3em;
+            line-height: 1.5em;
+            height: 1.5em;
+            width: 1.5em !important;
+             display: none; 
+            position: absolute;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            bottom: 0 !important;
+            margin: auto !important;
+            padding: 0;
+            cursor: pointer;
+            opacity: 1;
+            border: 0.06666em solid #fff;
+            background-color: #2b333f;
+            background-color: rgba(43, 51, 63, 0.7);
+            border-radius: 1.5em !important;
+            transition: all 0.4s;
+          }  */
       #ab {
         position: absolute;
         z-index: 999;
@@ -116,6 +123,31 @@
         max-height: 100%;
       }
 
+      footer {
+        padding: 20px 15px;
+        min-height: 100px;
+        background-color: #fdfdfd;
+      }
+      footer section {
+        padding: 15px 0 5px;
+      }
+
+      footer h4 {
+        border-top: 1px dashed #ddd;
+        text-align: center;
+      }
+
+      footer h4 strong {
+        display: block;
+        width: 60px;
+        height: 22px;
+        margin: 0 auto;
+        margin-top: -11px;
+        font-size: 0.9rem;
+        font-weight: 400;
+        color: #999;
+        background-color: #fdfdfd;
+      }
       #sponsorAd strong {
         width: 76px;
       }
@@ -143,6 +175,11 @@
         box-sizing: border-box;
       }
 
+      /* .vjs-paused .vjs-big-play-button,
+      .vjs-paused.vjs-has-started .vjs-big-play-button {
+        display: block;
+      } */
+
       /* 768px 及以下 */
       @media only screen and (max-width: 768px) {
         .my-video-dimensions {
@@ -158,7 +195,7 @@
           height: 36vh;
         }
         #ab > div {
-          width: 25vh;
+          width: 28vh;
           height: auto;
           max-width: 200px;
           max-height: 200px;
@@ -184,42 +221,30 @@
           height: 50vh;
         }
         #ab > div {
-          width: 40vh;
+          width: 30vh;
           height: auto;
         }
         #sponsorAd img {
-          width: 48%;
+          width: 60%;
         }
-      }
-
-      /* 992px 及以上 */
-      @media only screen and (min-width: 992px) {
-        #sponsorAd img {
-          width: 48%;
-        }
-      }
-
-      /* 1204px 及以上 */
-      @media only screen and (min-width: 1204px) {
         #sponsorFirm img {
           width: 20%;
         }
       }
 
-      /* 1366px 及以上 */
-      @media only screen and (min-width: 1366px) {
+      /* 1024px 及以上 */
+      @media only screen and (min-width: 1024px) {
         #sponsorAd img {
-          width: 31%;
+          width: 50%;
         }
         #sponsorFirm img {
           width: 16%;
         }
       }
-
-      /* 1799px 及以上 */
-      @media only screen and (min-width: 1799px) {
+      /* 1204px 及以上 */
+      @media only screen and (min-width: 1200px) {
         #sponsorAd img {
-          width: 24%;
+          width: 33%;
         }
         #sponsorFirm img {
           width: 12%;
@@ -228,38 +253,52 @@
     </style>
   </head>
   <body>
-    <section style="width:100%;position: relative;">
-      <video id="my-video" class="video-js vjs-big-play-centered" width="100%" height="100%" class="video"></video>
-      <div id="ab">
-        <div><img id="adImg" src="" alt="广告" /></div>
-      </div>
-    </section>
-    <section>
-      <div class="live-title">四川省妇联十二届七次执委会议在成都召开</div>
-      <div class="live-content">
-        <p>四川省妇联十二届七次执委会议于7月30日在成都召开。会议学习传达了省委十一届三次全会精神，省委副书记邓小刚出席会议并作重要讲话。</p>
-        <h4 style="font-weight:600">他强调：</h4>
-        <p>全省各级妇联要进一步增强政治性，牢固树立“四个意识”、增强“四个自信”，坚决做到“两个维护”，始终在思想上政治上行动上同以习近平同志为核心的党中央保持高度一致，团结带领广大妇联群众坚定不移听党话跟党走，确保妇联工作沿着正确政治方向前进。</p>
-      </div>
-    </section>
-    <script src="./video.min.js"></script>
+    <main>
+      <section style="width:100%;position: relative;">
+        <video id="my-video" class="video-js vjs-big-play-centered" width="100%" height="100%" class="video"></video>
+        <div id="ab">
+          <div><img id="adImg" src="" alt="广告" /></div>
+        </div>
+      </section>
+      <section>
+        <div class="live-title">四川省妇联十二届七次执委会议在成都召开</div>
+        <div class="live-content">
+          <p>四川省妇联十二届七次执委会议于7月30日在成都召开。会议学习传达了省委十一届三次全会精神，省委副书记邓小刚出席会议并作重要讲话。</p>
+          <h4 style="font-weight:600">他强调：</h4>
+          <p>全省各级妇联要进一步增强政治性，牢固树立“四个意识”、增强“四个自信”，坚决做到“两个维护”，始终在思想上政治上行动上同以习近平同志为核心的党中央保持高度一致，团结带领广大妇联群众坚定不移听党话跟党走，确保妇联工作沿着正确政治方向前进。</p>
+        </div>
+      </section>
+      <footer>
+        <section id="sponsorFirm">
+          <h4><strong>赞助商</strong></h4>
+          <div></div>
+        </section>
+        <section id="sponsorAd">
+          <h4><strong>赞助广告</strong></h4>
+          <div></div>
+        </section>
+      </footer>
+    </main>
+    <script src="video.min.js"></script>
     <script>
       (function() {
+        // 广告
         var adDom = document.querySelector("#ab");
 
+        // 初始化播放器
         var myPlayer = videojs(document.querySelector(".video-js"), {
           controls: true,
           autoplay: false,
           preload: "auto"
         });
-        
-        myPlayer.src([{ type: "application/x-mpegURL", src: http://cyberplayerplay.kaywang.cn/cyberplayer/demo201711-L1.m3u8 }]); // 播放资源
-        myPlayer.poster("http://gcqq450f71eywn6bv7u.exp.bcevod.com/mda-hbqagik5sfq1jsai/mda-hbqagik5sfq1jsai.jpg");  // 预览图
-        
+        myPlayer.src([{ type: "application/x-mpegURL", src: "http://cyberplayerplay.kaywang.cn/cyberplayer/demo201711-L1.m3u8" }]); // 播放资源
+        myPlayer.poster("http://gcqq450f71eywn6bv7u.exp.bcevod.com/mda-hbqagik5sfq1jsai/mda-hbqagik5sfq1jsai.jpg"); // 预览图
         myPlayer.ready(function() {
+          // 开始播放
           this.on("play", function() {
             adDom.style.display = "none";
           });
+          // 暂停
           this.on("pause", function() {
             adDom.style.display = "flex";
           });
@@ -275,8 +314,62 @@
             console.log("广告...");
           }
         });
-       
-        document.querySelector("#adImg").src = "https://bce.bdstatic.com/portal/img/product/lss/banner_117d201d.png"; // 暂停广告图
+
+        // // get AJAX
+        // function $get(url, fn) {
+        //   // XMLHttpRequest对象用于在后台与服务器交换数据
+        //   var xhr = new XMLHttpRequest();
+        //   xhr.open("GET", url, true);
+        //   xhr.onreadystatechange = function() {
+        //     // readyState == 4说明请求已完成
+        //     if ((xhr.readyState == 4 && xhr.status == 200) || xhr.status == 304) {
+        //       // 从服务器获得数据
+        //       fn.call(this, xhr.responseText);
+        //     }
+        //   };
+        //   xhr.send();
+        // }
+
+        // // 获取数据并显示
+        // $get("http://api.easysq.cn/live/live/525789602800205824", function(text) {
+        //   const _res = JSON.parse(text);
+        //   var adFragmeng, firmFragmeng;
+        //   // console.log("_res", _res);
+        //   myPlayer.src([{ type: _res.data.live_type, src: _res.data.live_flow_web }]); // 播放资源
+        //   myPlayer.poster(_res.data.live_poster); // 预览图
+        //   document.querySelector("#adImg").src = _res.data.live_ad; // 暂停广告图
+        //   document.querySelector(".live-title").innerText = _res.data.live_title; // 直播标题
+        //   document.querySelector(".live-content").innerText = _res.data.live_content; // 直播详情
+
+        //   // 赞助商
+        //   if (_res.data.live_sponsor.length) {
+        //     firmFragmeng = document.createDocumentFragment();
+        //     _res.data.live_sponsor.forEach(element => {
+        //       let img = new Image();
+        //       img.src = element.logo;
+        //       img.alt = img.title = element.name;
+
+        //       // 附加在文档碎片中
+        //       firmFragmeng.appendChild(img);
+        //     });
+        //     document.querySelector("#sponsorFirm").style.display = "block";
+        //     document.querySelector("#sponsorFirm div").appendChild(firmFragmeng);
+        //   }
+        //   // 赞助广告
+        //   if (_res.data.live_sponsor_ad.length) {
+        //     // 先创建文档碎片
+        //     adFragmeng = document.createDocumentFragment();
+        //     _res.data.live_sponsor_ad.forEach(element => {
+        //       let img = new Image();
+        //       img.src = element.pic;
+
+        //       // 附加在文档碎片中
+        //       adFragmeng.appendChild(img);
+        //     });
+        //     document.querySelector("#sponsorAd").style.display = "block";
+        //     document.querySelector("#sponsorAd  div").appendChild(adFragmeng);
+        //   }
+        // });
       })();
     </script>
   </body>

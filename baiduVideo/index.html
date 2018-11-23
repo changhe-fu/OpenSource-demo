@@ -1,17 +1,33 @@
 <html>
   <head>
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>直播</title>
     <style>
       /* .jwplayer .jw-icon-barlogo-new:before {
       content: none;
     }
     .jw-icon-barlogo-new {
-      background: url("./baidu/logo.png") no-repeat;
+      background: url("./logo.png") no-repeat;
       background-position: center;
     } */
-      #playercontainer {
-        margin: 0 auto;
+      body {
+        margin: 0;
+        padding: 0;
+        background: url("./bg.png");
+      }
+      main {
+        width: 900px;
         max-width: 100%;
+        min-height: 100vh;
+        margin: 0 auto;
+        background-color: #fdfdfd;
+      }
+      main section {
+        padding: 20px 15px;
+      }
+      #playercontainer {
+        /* margin: 0 auto; */
+        /* max-width: 100%; */
       }
       #playercontainer .jw-adv,
       .jw-preview {
@@ -26,39 +42,50 @@
           width: 100% !important;
           height: 300px !important;
         }
-
         #playercontainer .ad-class {
           width: 200px !important;
           height: 200px !important;
         }
       }
     </style>
+  </head>
+
+  <body>
+    <main>
+      <div id="playercontainer"></div>
+      <section>
+        <h2>直播标题</h2>
+        <article>直播介绍： 这是一个直播demo，感谢 <a href="https://cloud.baidu.com/doc/MCT/Web-SDK.html">百度云</a> ....</article>
+        <p>备注：须在服务器环境才能连接到直播~</p>
+      </section>
+    </main>
+    <script type="text/javascript" src="./cyberplayer.js"></script>
     <script>
       // 控制图片广告宽度和高度
       (function() {
-        var browser = {
-          versions: (function() {
-            var u = navigator.userAgent,
-              app = navigator.appVersion;
-            return {
-              trident: u.indexOf("Trident") > -1, //IE内核
-              presto: u.indexOf("Presto") > -1, //opera内核
-              webKit: u.indexOf("AppleWebKit") > -1, //苹果、谷歌内核
-              gecko: u.indexOf("Gecko") > -1 && u.indexOf("KHTML") == -1, //火狐内核
-              mobile: !!u.match(/AppleWebKit.*Mobile.*/) || !!u.match(/AppleWebKit/), //是否为移动终端
-              ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
-              android: u.indexOf("Android") > -1 || u.indexOf("Linux") > -1, //android终端或者uc浏览器
-              iPhone: u.indexOf("iPhone") > -1 || u.indexOf("Mac") > -1, //是否为iPhone或者QQHD浏览器
-              iPad: u.indexOf("iPad") > -1, //是否iPad
-              webApp: u.indexOf("Safari") == -1 //是否web应该程序，没有头部与底部
-            };
-          })(),
-          language: (navigator.browserLanguage || navigator.language).toLowerCase()
-        };
+        // var browser = {
+        //   versions: (function() {
+        //     var u = navigator.userAgent,
+        //       app = navigator.appVersion;
+        //     return {
+        //       trident: u.indexOf("Trident") > -1, //IE内核
+        //       presto: u.indexOf("Presto") > -1, //opera内核
+        //       webKit: u.indexOf("AppleWebKit") > -1, //苹果、谷歌内核
+        //       gecko: u.indexOf("Gecko") > -1 && u.indexOf("KHTML") == -1, //火狐内核
+        //       mobile: !!u.match(/AppleWebKit.*Mobile.*/) || !!u.match(/AppleWebKit/), //是否为移动终端
+        //       ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+        //       android: u.indexOf("Android") > -1 || u.indexOf("Linux") > -1, //android终端或者uc浏览器
+        //       iPhone: u.indexOf("iPhone") > -1 || u.indexOf("Mac") > -1, //是否为iPhone或者QQHD浏览器
+        //       iPad: u.indexOf("iPad") > -1, //是否iPad
+        //       webApp: u.indexOf("Safari") == -1 //是否web应该程序，没有头部与底部
+        //     };
+        //   })(),
+        //   language: (navigator.browserLanguage || navigator.language).toLowerCase()
+        // };
 
-        var isPC = browser.versions.android || browser.versions.iPhone || browser.versions.ios ? false : true;
-        var adWidth = isPC ? 400 : 200;
-        var adHight = isPC ? 300 : 150;
+        // var isPC = browser.versions.android || browser.versions.iPhone || browser.versions.ios ? false : true;
+        // var adWidth = isPC ? 400 : 200;
+        // var adHight = isPC ? 300 : 150;
 
         function reSizeAD() {
           const isFooler = window.innerWidth <= 768;
@@ -74,18 +101,14 @@
         window.onresize = reSizeAD;
       })(window);
     </script>
-  </head>
-
-  <body>
-    <main><div id="playercontainer"></div></main>
-    <script type="text/javascript" src="cyberplayer.js"></script>
     <script type="text/javascript">
       // api https://cloud.baidu.com/doc/MCT/WebSDKAPI.html#cyberplayer.3A.3AgetPlaylist
       var player = cyberplayer("playercontainer").setup({
         width: 900,
         height: 448,
-        file: "rtmp://hwzbin.yunshicloud.com/y8kawn/g5181v", // <—rtmp直播地址
-        fallbackfile: "https://hwzbfee.yunshicloud.com/x7px03/x7px03/yh9zk3/y8kawn/g5181v.m3u8", // <— 备用播放地址，为了手机上能进行直播
+        file: "rtmp://cyberplayerplay.kaywang.cn/cyberplayer/demo201711-L1", // <—rtmp直播地址
+        fallbackfile: "http://cyberplayerplay.kaywang.cn/cyberplayer/demo201711-L1.m3u8", // <— 备用播放地址，为了手机上能进行直播
+        image: "http://gcqq450f71eywn6bv7u.exp.bcevod.com/mda-hbqagik5sfq1jsai/mda-hbqagik5sfq1jsai.jpg", // 预览图
         autostart: true,
         stretching: "uniform",
         volume: 100,
@@ -118,7 +141,7 @@
             url: "https://cloud.baidu.com/solution/video_ai.html"
           }
         },
-        ak: "*********************" // 公有云平台注册即可获得accessKey
+        ak: "********************************" // 公有云平台注册即可获得accessKey
       });
 
       function $get(url, fn) {
