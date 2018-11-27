@@ -4,59 +4,88 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <title>直播</title>
-    <link href="video-js.min.css" rel="stylesheet" />
+    <link href="./video-js.min.css" rel="stylesheet" />
     <style>
       * {
         padding: 0;
         margin: 0;
       }
+
       body {
         background: url("./bg.png");
       }
+
       main {
+        min-height: 100vh;
         max-width: 1200px;
         margin: 0 auto;
+        background-color: #f8f8f8;
       }
-      .video {
+
+      .live-play {
         width: 100%;
-        height: 30vh;
-      }
-      .liveView {
         position: relative;
-        background: #fff;
       }
 
-      .selectWrapper {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 20px;
-        line-height: 30px;
-        margin: 20px;
-        vertical-align: baseline;
+      /* 圆形播放按钮 */
+      .video-js .vjs-big-play-button {
+        width: 2em !important;
+        height: 2em !important;
+        line-height: 2em !important;
+        border-radius: 2em !important;
+      }
+      .vjs-big-play-centered .vjs-big-play-button {
+        margin-top: -1em;
+        margin-left: -1em;
       }
 
-      .inputWrapper {
-        width: 500px;
-        margin: 0 auto;
+      /* 直播详情 */
+      .live-article {
+        position: relative;
+        max-height: calc(50vh - 160px);
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .live-article-show {
+        position: relative;
+        max-height: calc(50vh - 160px);
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
 
-      .buttonWrapper {
+      .showMore {
+        display: none;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 50px;
+        line-height: 68px;
         text-align: center;
+        font-size: 12px;
+        color: #999;
+
+        background: -webkit-linear-gradient(top, rgba(248, 248, 248, 0) 0%, rgba(248, 248, 248, 1) 40%, rgba(248, 248, 248, 1) 100%);
+        background: -moz-linear-gradient(top, rgba(248, 248, 248, 0) 0%, rgba(248, 248, 248, 1) 40%, rgba(248, 248, 248, 1) 100%);
+        background: -o-linear-gradient(top, rgba(248, 248, 248, 0) 0%, rgba(248, 248, 248, 1) 40%, rgba(248, 248, 248, 1) 100%);
+        background: -ms-linear-gradient(top, rgba(248, 248, 248, 0) 0%, rgba(248, 248, 248, 1) 40%, rgba(248, 248, 248, 1) 100%);
+        background: linear-gradient(top, rgba(248, 248, 248, 0) 0%, rgba(248, 248, 248, 1) 40%, rgba(248, 248, 248, 1) 100%);
+      }
+      .showMore strong {
+        cursor: pointer;
       }
 
-      .live-title {
+      .live-article .live-title {
         text-align: center;
-        padding: 3vh 3%;
+        padding: 20px 3%;
         font-size: 1.2rem;
         font-weight: 600;
-        background-color: #fdfdfd;
+        /* background-color: #fdfdfd; */
+        background-color: #ffffff;
       }
 
-      .live-content {
-        min-height: 300px;
-        padding: 3vh 3%;
-        background: #f8f8f8;
+      .live-article .live-content {
+        padding: 25px 3%;
+        background-color: #f8f8f8;
       }
 
       .live-content p {
@@ -73,32 +102,7 @@
         color: #666;
       }
 
-      .my-video-dimensions {
-        width: 100% !important;
-        height: 50vh !important;
-      }
-
-      /* .video-js .vjs-big-play-button {
-            font-size: 3em;
-            line-height: 1.5em;
-            height: 1.5em;
-            width: 1.5em !important;
-             display: none; 
-            position: absolute;
-            top: 0 !important;
-            left: 0 !important;
-            right: 0 !important;
-            bottom: 0 !important;
-            margin: auto !important;
-            padding: 0;
-            cursor: pointer;
-            opacity: 1;
-            border: 0.06666em solid #fff;
-            background-color: #2b333f;
-            background-color: rgba(43, 51, 63, 0.7);
-            border-radius: 1.5em !important;
-            transition: all 0.4s;
-          }  */
+      /* 暂停广告 */
       #ab {
         position: absolute;
         z-index: 999;
@@ -123,10 +127,10 @@
         max-height: 100%;
       }
 
+      /* 页脚 */
       footer {
-        padding: 20px 15px;
-        min-height: 100px;
-        background-color: #fdfdfd;
+        padding: 10px 10px;
+        background-color: #f8f8f8;
       }
       footer section {
         padding: 15px 0 5px;
@@ -140,13 +144,14 @@
       footer h4 strong {
         display: block;
         width: 60px;
-        height: 22px;
+        height: 26px;
         margin: 0 auto;
-        margin-top: -11px;
+        margin-top: -10px;
         font-size: 0.9rem;
         font-weight: 400;
         color: #999;
-        background-color: #fdfdfd;
+        /* background-color: #fdfdfd; */
+        background-color: #f8f8f8;
       }
       #sponsorAd strong {
         width: 76px;
@@ -162,27 +167,30 @@
         text-align: center;
       }
 
-      #sponsorAd img {
+      #sponsorAd .sponsorAdImg {
         width: 100%;
-        padding: 5px;
+        padding: 3px;
         box-sizing: border-box;
       }
 
       #sponsorFirm img {
         width: 25%;
         height: auto;
-        padding: 5px;
+        padding: 3px;
         box-sizing: border-box;
       }
 
-      /* .vjs-paused .vjs-big-play-button,
-      .vjs-paused.vjs-has-started .vjs-big-play-button {
-        display: block;
-      } */
+      #sponsorAd .sponsorAdImg div {
+        padding: 3px;
+        box-sizing: border-box;
+      }
+      #sponsorAd .sponsorAdImg div img {
+        width: 100%;
+      }
 
       /* 768px 及以下 */
       @media only screen and (max-width: 768px) {
-        .my-video-dimensions {
+        .live-play .video-js {
           width: 100% !important;
           height: 36vh !important;
         }
@@ -201,17 +209,22 @@
           max-height: 200px;
           /* background-color: #ffffff; */
         }
-        #sponsorAd img {
+        #sponsorAd .sponsorAdImg div {
           width: 100%;
+        }
+        .live-article {
+          max-height: 200px;
+          max-height: calc(64vh - 160px);
         }
       }
 
       /* 768px 及以上 */
       @media only screen and (min-width: 768px) {
-        .my-video-dimensions {
+        .live-play .video-js {
           width: 100% !important;
           height: 50vh !important;
         }
+
         .live-title {
           line-height: 1.5;
           font-size: 1.2rem;
@@ -224,17 +237,21 @@
           width: 30vh;
           height: auto;
         }
-        #sponsorAd img {
+        #sponsorAd .sponsorAdImg div {
           width: 60%;
         }
         #sponsorFirm img {
           width: 20%;
         }
+        .live-article {
+          max-height: 200px;
+          max-height: calc(50vh - 180px);
+        }
       }
 
       /* 1024px 及以上 */
       @media only screen and (min-width: 1024px) {
-        #sponsorAd img {
+        #sponsorAd .sponsorAdImg div {
           width: 50%;
         }
         #sponsorFirm img {
@@ -243,7 +260,7 @@
       }
       /* 1204px 及以上 */
       @media only screen and (min-width: 1200px) {
-        #sponsorAd img {
+        #sponsorAd .sponsorAdImg div {
           width: 33%;
         }
         #sponsorFirm img {
@@ -254,19 +271,16 @@
   </head>
   <body>
     <main>
-      <section style="width:100%;position: relative;">
-        <video id="my-video" class="video-js vjs-big-play-centered" width="100%" height="100%" class="video"></video>
+      <section class="live-play">
+        <video id="my-video" class="video-js vjs-big-play-centered" width="100%" height="100%"></video>
         <div id="ab">
           <div><img id="adImg" src="" alt="广告" /></div>
         </div>
       </section>
-      <section>
-        <div class="live-title">四川省妇联十二届七次执委会议在成都召开</div>
-        <div class="live-content">
-          <p>四川省妇联十二届七次执委会议于7月30日在成都召开。会议学习传达了省委十一届三次全会精神，省委副书记邓小刚出席会议并作重要讲话。</p>
-          <h4 style="font-weight:600">他强调：</h4>
-          <p>全省各级妇联要进一步增强政治性，牢固树立“四个意识”、增强“四个自信”，坚决做到“两个维护”，始终在思想上政治上行动上同以习近平同志为核心的党中央保持高度一致，团结带领广大妇联群众坚定不移听党话跟党走，确保妇联工作沿着正确政治方向前进。</p>
-        </div>
+      <section class="live-article">
+        <div class="live-title"></div>
+        <div class="live-content"></div>
+        <p class="showMore"><strong class="showMoreBtn">显示全文</strong></p>
       </section>
       <footer>
         <section id="sponsorFirm">
@@ -275,101 +289,215 @@
         </section>
         <section id="sponsorAd">
           <h4><strong>赞助广告</strong></h4>
-          <div></div>
+          <div class="sponsorAdImg"></div>
         </section>
       </footer>
     </main>
-    <script src="video.min.js"></script>
+    <script src="./video.min.js"></script>
     <script>
-      (function() {
-        // 广告
-        var adDom = document.querySelector("#ab");
+      var browser = {
+        versions: (function() {
+          var u = navigator.userAgent,
+            app = navigator.appVersion;
+          return {
+            trident: u.indexOf("Trident") > -1, //IE内核
+            presto: u.indexOf("Presto") > -1, //opera内核
+            webKit: u.indexOf("AppleWebKit") > -1, //苹果、谷歌内核
+            gecko: u.indexOf("Gecko") > -1 && u.indexOf("KHTML") == -1, //火狐内核
+            mobile: !!u.match(/AppleWebKit.*Mobile.*/) || !!u.match(/AppleWebKit/), //是否为移动终端
+            ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+            android: u.indexOf("Android") > -1 || u.indexOf("Linux") > -1, //android终端或者uc浏览器
+            iPhone: u.indexOf("iPhone") > -1 || u.indexOf("Mac") > -1, //是否为iPhone或者QQHD浏览器
+            iPad: u.indexOf("iPad") > -1, //是否iPad
+            webApp: u.indexOf("Safari") == -1 //是否web应该程序，没有头部与底部
+          };
+        })(),
+        language: (navigator.browserLanguage || navigator.language).toLowerCase()
+      };
 
+      var isPC = browser.versions.android || browser.versions.iPhone || browser.versions.ios ? false : true;
+
+      (function() {
         // 初始化播放器
         var myPlayer = videojs(document.querySelector(".video-js"), {
           controls: true,
           autoplay: false,
           preload: "auto"
         });
+
+        // 全屏状态切换
+        var fullStatus = false;
+        myPlayer.on("fullscreenchange", function(e) {
+          fullStatus = !fullStatus;
+          document.querySelector(".video-js").style.setProperty("height", fullStatus ? "100vh" : isPC ? "50vh" : " 36vh", "important");
+        });
+
         myPlayer.src([{ type: "application/x-mpegURL", src: "http://cyberplayerplay.kaywang.cn/cyberplayer/demo201711-L1.m3u8" }]); // 播放资源
         myPlayer.poster("http://gcqq450f71eywn6bv7u.exp.bcevod.com/mda-hbqagik5sfq1jsai/mda-hbqagik5sfq1jsai.jpg"); // 预览图
-        myPlayer.ready(function() {
-          // 开始播放
-          this.on("play", function() {
-            adDom.style.display = "none";
-          });
-          // 暂停
-          this.on("pause", function() {
-            adDom.style.display = "flex";
-          });
-        });
 
-        adDom.addEventListener("click", function(e) {
-          if (e.target.getAttribute("id") == "ab") {
-            // 遮罩
-            e.target.style.display = "none";
-            myPlayer.play(); // 开始播放
+        // get AJAX
+        function $get(url, fn) {
+          // XMLHttpRequest对象用于在后台与服务器交换数据
+          var xhr = new XMLHttpRequest();
+          xhr.open("GET", url, true);
+          xhr.onreadystatechange = function() {
+            // readyState == 4说明请求已完成
+            if ((xhr.readyState == 4 && xhr.status == 200) || xhr.status == 304) {
+              // 从服务器获得数据
+              fn.call(this, xhr.responseText);
+            }
+          };
+          xhr.send();
+        }
+
+        // 获取元素 style
+        function getCss(obj, attribute) {
+          if (window.getComputedStyle) {
+            return window.getComputedStyle(obj, null)[attribute];
           } else {
-            // 广告
-            console.log("广告...");
+            return obj.currentStyle[attribute];
           }
-        });
+        }
 
-        // // get AJAX
-        // function $get(url, fn) {
-        //   // XMLHttpRequest对象用于在后台与服务器交换数据
-        //   var xhr = new XMLHttpRequest();
-        //   xhr.open("GET", url, true);
-        //   xhr.onreadystatechange = function() {
-        //     // readyState == 4说明请求已完成
-        //     if ((xhr.readyState == 4 && xhr.status == 200) || xhr.status == 304) {
-        //       // 从服务器获得数据
-        //       fn.call(this, xhr.responseText);
-        //     }
-        //   };
-        //   xhr.send();
-        // }
+        // 获取数据并显示
+        function initVideo(res) {
+          {
+            var firmFragment, // 赞助商文档碎片
+              sponsorAdBox, // 赞助广告el
+              showM, // 显示全文el
+              adDom, // 暂停广告el
+              articleBox = document.querySelector(".live-article"),
+              articleCon = document.querySelector(".live-content"),
+              _res = res || {
+                code: 2000,
+                msg: "请求成功",
+                data: {
+                  live_id: "525789602800205824",
+                  live_title: "省妇联直播",
+                  live_poster: "http://gcqq450f71eywn6bv7u.exp.bcevod.com/mda-hbqagik5sfq1jsai/mda-hbqagik5sfq1jsai.jpg",
+                  live_content: "四川省妇联十二届七次执委会议于7月30日在成都召开。会议学习传达了省委十一届三次全会精神，省委副书记邓小刚出席会议并作重要讲话。\r\n\r\n他强调：\r\n全省各级妇联要进一步增强政治性，牢固树立“四个意识”、增强“四个自信”，坚决做到“两个维护”，始终在思想上政治上行动上同以习近平同志为核心的党中央保持高度一致，团结带领广大妇联群众坚定不移听党话跟党走，确保妇联工作沿着正确政治方向前进。",
+                  live_flow_mini: "rtmp://hwzbin.yunshicloud.com/y8kawn/g5181v",
+                  live_flow_web: "http://cyberplayerplay.kaywang.cn/cyberplayer/demo201711-L1.m3u8",
+                  live_type: "application/x-mpegURL",
+                  live_mode: "1",
+                  live_ad: "https://img.sqydt.darongshutech.com/image_201811211205514797.png",
+                  live_sponsor: [
+                    { logo: "https://img.sqydt.darongshutech.com/image_201811201424278160.png", name: "可口可乐" },
+                    { logo: "https://img.sqydt.darongshutech.com/image_201811201424271054.png", name: "阿曼那资本" },
+                    { logo: "https://img.sqydt.darongshutech.com/image_201811201424283486.png", name: "激石集团" },
+                    { logo: "https://img.sqydt.darongshutech.com/image_201811201424293562.png", name: "红杉资本" },
+                    { logo: "https://img.sqydt.darongshutech.com/image_201811201424293562.png", name: "红杉资本" },
+                    { logo: "https://img.sqydt.darongshutech.com/image_201811201424293562.png", name: "红杉资本" },
+                    { logo: "https://img.sqydt.darongshutech.com/image_201811201424293562.png", name: "红杉资本" },
+                    { logo: "https://img.sqydt.darongshutech.com/image_201811201424293562.png", name: "红杉资本" }
+                  ],
+                  live_sponsor_ad: [{ pic: "https://img.sqydt.darongshutech.com/image_201811201424263538.png" }, { pic: "https://img.sqydt.darongshutech.com/image_201811201424263538.png" }, { pic: "https://img.sqydt.darongshutech.com/image_201811201424263538.png" }, { pic: "https://img.sqydt.darongshutech.com/image_201811201424263538.png" }],
+                  visit_num: "21745",
+                  live_play_back: "",
+                  share_pic: null,
+                  share_desc: null
+                }
+              };
 
-        // // 获取数据并显示
-        // $get("http://api.easysq.cn/live/live/525789602800205824", function(text) {
-        //   const _res = JSON.parse(text);
-        //   var adFragmeng, firmFragmeng;
-        //   // console.log("_res", _res);
-        //   myPlayer.src([{ type: _res.data.live_type, src: _res.data.live_flow_web }]); // 播放资源
-        //   myPlayer.poster(_res.data.live_poster); // 预览图
-        //   document.querySelector("#adImg").src = _res.data.live_ad; // 暂停广告图
-        //   document.querySelector(".live-title").innerText = _res.data.live_title; // 直播标题
-        //   document.querySelector(".live-content").innerText = _res.data.live_content; // 直播详情
+            if (_res.code != 2000) {
+              document.querySelector(".live-title").innerText = "直播数据获取有误！";
+              document.querySelector(".live-content").innerText = "直播数据获取有误~";
+              return;
+            }
 
-        //   // 赞助商
-        //   if (_res.data.live_sponsor.length) {
-        //     firmFragmeng = document.createDocumentFragment();
-        //     _res.data.live_sponsor.forEach(element => {
-        //       let img = new Image();
-        //       img.src = element.logo;
-        //       img.alt = img.title = element.name;
+            // console.log("_res", _res);
+            myPlayer.src([{ type: _res.data.live_type, src: _res.data.live_flow_web }]); // 播放资源
+            myPlayer.poster(_res.data.live_poster); // 预览图
 
-        //       // 附加在文档碎片中
-        //       firmFragmeng.appendChild(img);
-        //     });
-        //     document.querySelector("#sponsorFirm").style.display = "block";
-        //     document.querySelector("#sponsorFirm div").appendChild(firmFragmeng);
-        //   }
-        //   // 赞助广告
-        //   if (_res.data.live_sponsor_ad.length) {
-        //     // 先创建文档碎片
-        //     adFragmeng = document.createDocumentFragment();
-        //     _res.data.live_sponsor_ad.forEach(element => {
-        //       let img = new Image();
-        //       img.src = element.pic;
+            document.querySelector(".live-title").innerText = _res.data.live_title; // 直播标题
+            document.querySelector(".live-content").innerText = _res.data.live_content; // 直播详情
 
-        //       // 附加在文档碎片中
-        //       adFragmeng.appendChild(img);
-        //     });
-        //     document.querySelector("#sponsorAd").style.display = "block";
-        //     document.querySelector("#sponsorAd  div").appendChild(adFragmeng);
-        //   }
-        // });
+            // 显示全文
+            if (articleCon.offsetHeight > parseInt(getCss(articleBox, "maxHeight"))) {
+              showM = document.querySelector(".showMore");
+              showM.style.display = "block";
+              document.querySelector(".showMoreBtn").addEventListener("click", function(e) {
+                articleBox.style.maxHeight = "none";
+                showM.style.display = "none";
+              });
+            }
+
+            // 暂停广告图
+            if (_res.data.live_ad) {
+              document.querySelector("#adImg").src = _res.data.live_ad;
+              // 广告
+              adDom = document.querySelector("#ab");
+              myPlayer.ready(function() {
+                // 开始播放
+                this.on("play", function() {
+                  adDom.style.display = "none";
+                });
+                // 暂停
+                this.on("pause", function() {
+                  adDom.style.display = "flex";
+                });
+              });
+
+              adDom.addEventListener("click", function(e) {
+                if (e.target.getAttribute("id") == "ab") {
+                  // 遮罩
+                  e.target.style.display = "none";
+                  myPlayer.play(); // 开始播放
+                } else {
+                  // 广告
+                  console.log("广告...");
+                }
+              });
+            }
+
+            // 赞助商
+            if (_res.data.live_sponsor.length) {
+              firmFragment = document.createDocumentFragment();
+              _res.data.live_sponsor.forEach(function(element) {
+                var img = new Image();
+                img.src = element.logo;
+                img.alt = img.title = element.name;
+
+                // 附加在文档碎片中
+                firmFragment.appendChild(img);
+              });
+              document.querySelector("#sponsorFirm").style.display = "block";
+              document.querySelector("#sponsorFirm div").appendChild(firmFragment);
+            }
+
+            // 赞助广告
+            if (_res.data.live_sponsor_ad.length) {
+              sponsorAdBox = document.querySelector("#sponsorAd");
+              sponsorAdBox.style.display = "block";
+
+              _res.data.live_sponsor_ad.forEach(function(element, index) {
+                var elDiv = document.createElement("div");
+                elDiv.style = "position: relative;display:inline-block;";
+
+                var elSpan = document.createElement("span");
+                elSpan.style = "position: absolute;top:7px;left:9px;font-size:12px;padding:1px 5px;background-color:#666;color:#fff; cursor: pointer;";
+                elSpan.innerHTML = "广告 X";
+                elSpan.className = "removeAd" + index;
+                elDiv.appendChild(elSpan);
+
+                var elImg = new Image();
+                elImg.src = element.pic;
+                elDiv.appendChild(elImg);
+
+                document.querySelector("#sponsorAd  div").appendChild(elDiv);
+
+                document.querySelector(".removeAd" + index).addEventListener("click", function(e) {
+                  var _parentNode = this.parentNode;
+                  if (_parentNode.parentNode.children.length == 1) {
+                    sponsorAdBox.style.display = "none";
+                  }
+                  _parentNode.parentNode.removeChild(_parentNode);
+                });
+              });
+            }
+          }
+        }
+        initVideo();
       })();
     </script>
   </body>
