@@ -1,6 +1,6 @@
 # uedemo
 
-> A Vue.js project
+一个百度编辑器的简单demo
 
 ## Build Setup
 
@@ -18,4 +18,14 @@ npm run build
 npm run build --report
 ```
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+## 主题切换
+
+ueditor.config.js 文件中修改配置 `theme: "ws"`, 支持的主题 default，ws
+
+**自定义主题**
+
+在 themes 文件夹中添加
+
+## 自定义模板
+
+\UE\dialogs\template\config.js 文件中添加模板；`lang` 熟悉在 \UE\lang\zh-cn\zh-cn.js 中配置
