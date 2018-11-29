@@ -1,0 +1,1769 @@
+/*基础UI构建
+*/
+/* common layer */
+
+.edui-ws .edui-box {
+  border: none;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+}
+.edui-ws a.edui-box {
+  display: block;
+  text-decoration: none;
+  color: black;
+}
+.edui-ws a.edui-box:hover {
+  text-decoration: none;
+}
+.edui-ws a.edui-box:active {
+  text-decoration: none;
+}
+.edui-ws table.edui-box {
+  border-collapse: collapse;
+}
+.edui-ws ul.edui-box {
+  list-style-type: none;
+}
+div.edui-box {
+  position: relative;
+  display: -moz-inline-box !important;
+  display: inline-block !important;
+  vertical-align: middle;
+}
+.edui-ws .edui-clearfix {
+  zoom: 1;
+}
+.edui-ws .edui-clearfix:after {
+  content: "\20";
+  display: block;
+  clear: both;
+}
+* html div.edui-box {
+  display: inline !important;
+}
+*:first-child + html div.edui-box {
+  display: inline !important;
+}
+/* control layout */
+
+.edui-ws .edui-button-body,
+.edui-splitbutton-body,
+.edui-menubutton-body,
+.edui-combox-body {
+  position: relative;
+  font-size: 0;
+  *font-size: 14px;
+}
+.edui-ws .edui-popup {
+  position: absolute;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+}
+.edui-ws .edui-popup .edui-shadow {
+  position: absolute;
+  z-index: -1;
+}
+.edui-ws .edui-popup .edui-bordereraser {
+  position: absolute;
+  overflow: hidden;
+  display: none;
+}
+.edui-ws .edui-tablepicker .edui-canvas {
+  position: relative;
+}
+.edui-ws .edui-tablepicker .edui-canvas .edui-overlay {
+  position: absolute;
+}
+.edui-ws .edui-dialog-modalmask,
+.edui-dialog-dragmask {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+.edui-ws .edui-toolbar {
+  position: relative;
+  /* border-bottom: 1px solid #e7e7eb; */
+}
+/*
+ * ws theme
+ */
+
+.edui-ws .edui-label {
+  cursor: ws;
+}
+.edui-ws span.edui-clickable {
+  color: blue;
+  cursor: pointer;
+  text-decoration: underline;
+}
+.edui-ws span.edui-unclickable {
+  color: gray;
+  cursor: ws;
+}
+/* 工具栏 */
+
+.edui-ws .edui-toolbar {
+  cursor: ws;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  padding: 1px;
+  overflow: hidden;
+  /*全屏下单独一行不占位*/
+
+  zoom: 1;
+  width: auto;
+  height: auto;
+}
+.edui-ws .edui-toolbar .edui-button,
+.edui-ws .edui-toolbar .edui-splitbutton,
+.edui-ws .edui-toolbar .edui-menubutton,
+.edui-ws .edui-toolbar .edui-combox {
+  margin: 1px;
+}
+/*UI工具栏、编辑区域、底部*/
+
+.edui-ws .edui-editor {
+  border: 1px solid #d4d4d4;
+  background-color: white;
+  position: relative;
+  overflow: visible;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+.edui-editor div {
+  width: auto;
+  height: auto;
+}
+.edui-ws .edui-editor-toolbarbox {
+  position: relative;
+  zoom: 1;
+  overflow: hidden;
+  *left: auto !important;
+}
+.edui-ws .edui-editor-toolbarboxouter {
+  background-color: #ffffff;
+  background-repeat: repeat-x;
+  *zoom: 1;
+  border-bottom: 0;
+}
+.edui-ws .edui-editor-toolbarboxinner {
+  position: relative;
+  min-height: 28px;
+  border-bottom: 1px solid #e7e7eb;
+  padding: 20px;
+}
+.edui-ws .edui-editor-iframeholder {
+  position: relative;
+  /* height: 500px!important; */
+  /*原来是440*/
+}
+.edui-ws .edui-editor-iframeholder textarea {
+  font-family: consolas, "Courier New", "lucida console", monospace;
+  font-size: 12px;
+  line-height: 18px;
+}
+.edui-ws .edui-editor-bottombar {
+  /*border-top: 1px solid #ccc;*/
+  /*height: 20px;*/
+  /*width: 40%;*/
+  /*float: left;*/
+  /*overflow: hidden;*/
+}
+.edui-ws .edui-editor-bottomContainer {
+  overflow: hidden;
+}
+.edui-ws .edui-editor-bottomContainer table {
+  width: 100%;
+  height: 0;
+  overflow: hidden;
+  border-spacing: 0;
+}
+.edui-ws .edui-editor-bottomContainer td {
+  white-space: nowrap;
+  border-top: 1px solid #ccc;
+  line-height: 20px;
+  font-size: 12px;
+  font-family: Arial, Helvetica, Tahoma, Verdana, Sans-Serif;
+}
+.edui-ws .edui-editor-wordcount {
+  text-align: right;
+  margin-right: 5px;
+  color: #aaa;
+}
+.edui-ws .edui-editor-scale {
+  width: 12px;
+}
+.edui-ws .edui-editor-scale .edui-editor-icon {
+  float: right;
+  width: 100%;
+  height: 12px;
+  margin-top: 10px;
+  background: url(../images/scale.png) no-repeat;
+  cursor: se-resize;
+}
+.edui-ws .edui-editor-breadcrumb {
+  margin: 2px 0 0 3px;
+}
+.edui-ws .edui-editor-breadcrumb span {
+  cursor: pointer;
+  text-decoration: underline;
+  color: blue;
+}
+.edui-ws .edui-toolbar .edui-for-fullscreen {
+  float: right;
+}
+.edui-ws .edui-bubble .edui-popup-content {
+  border: 1px solid #dcac6c;
+  background-color: #fff6d9;
+  padding: 5px;
+  font-size: 10pt;
+  font-family: "宋体";
+}
+.edui-ws .edui-bubble .edui-shadow {
+  /*box-shadow: 1px 1px 3px #818181;*/
+  /*-webkit-box-shadow: 2px 2px 3px #818181;*/
+  /*-moz-box-shadow: 2px 2px 3px #818181;*/
+  /*filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius = '2', MakeShadow = 'true', ShadowOpacity = '0.5');*/
+}
+.edui-ws .edui-editor-toolbarmsg {
+  background-color: #fff6d9;
+  border-bottom: 1px solid #ccc;
+  position: absolute;
+  bottom: -25px;
+  left: 0;
+  z-index: 1009;
+  width: 99.9%;
+}
+.edui-ws .edui-editor-toolbarmsg-upload {
+  font-size: 14px;
+  color: blue;
+  width: 100px;
+  height: 16px;
+  line-height: 16px;
+  cursor: pointer;
+  position: absolute;
+  top: 5px;
+  left: 350px;
+}
+.edui-ws .edui-editor-toolbarmsg-label {
+  font-size: 12px;
+  line-height: 16px;
+  padding: 4px;
+}
+.edui-ws .edui-editor-toolbarmsg-close {
+  float: right;
+  width: 20px;
+  height: 16px;
+  line-height: 16px;
+  cursor: pointer;
+  color: red;
+}
+/*可选中菜单按钮*/
+
+.edui-ws .edui-list .edui-bordereraser {
+  display: none;
+}
+.edui-ws .edui-listitem {
+  padding: 1px;
+  white-space: nowrap;
+}
+.edui-ws .edui-list .edui-state-hover {
+  position: relative;
+  background-color: #fff5d4;
+  border: 1px solid #dcac6c;
+  padding: 0;
+}
+.edui-ws .edui-for-fontfamily .edui-listitem-label {
+  min-width: 130px;
+  _width: 120px;
+  font-size: 12px;
+  height: 22px;
+  line-height: 22px;
+  padding-left: 5px;
+}
+.edui-ws .edui-for-insertcode .edui-listitem-label {
+  min-width: 120px;
+  _width: 120px;
+  font-size: 12px;
+  height: 22px;
+  line-height: 22px;
+  padding-left: 5px;
+}
+.edui-ws .edui-for-underline .edui-listitem-label {
+  min-width: 120px;
+  _width: 120px;
+  padding: 3px 5px;
+  font-size: 12px;
+}
+.edui-ws .edui-for-fontsize .edui-listitem-label {
+  min-width: 120px;
+  _width: 120px;
+  padding: 3px 5px;
+}
+.edui-ws .edui-for-paragraph .edui-listitem-label {
+  min-width: 200px;
+  _width: 200px;
+  padding: 2px 5px;
+}
+.edui-ws .edui-for-rowspacingtop .edui-listitem-label,
+.edui-ws .edui-for-rowspacingbottom .edui-listitem-label {
+  min-width: 53px;
+  _width: 53px;
+  padding: 2px 5px;
+}
+.edui-ws .edui-for-lineheight .edui-listitem-label {
+  min-width: 53px;
+  _width: 53px;
+  padding: 2px 5px;
+}
+.edui-ws .edui-for-customstyle .edui-listitem-label {
+  min-width: 200px;
+  _width: 200px;
+  width: 200px !important;
+  padding: 2px 5px;
+}
+/* 可选中按钮弹出菜单*/
+
+.edui-ws .edui-menu {
+  z-index: 3000;
+}
+.edui-ws .edui-menu .edui-popup-content {
+  padding: 3px;
+}
+.edui-ws .edui-menu-body {
+  _width: 150px;
+  min-width: 170px;
+  background: url("../images/sparator_v.png") repeat-y 25px;
+}
+.edui-ws .edui-menuitem-body {
+}
+.edui-ws .edui-menuitem {
+  height: 20px;
+  cursor: ws;
+  vertical-align: top;
+}
+.edui-ws .edui-menuitem .edui-icon {
+  width: 20px !important;
+  height: 20px !important;
+  background: url(../images/icons.png) 0 -4000px;
+  background: url(../images/icons.gif) 0 -4000px\9;
+}
+.edui-ws .edui-menuitem .edui-label {
+  font-size: 12px;
+  line-height: 20px;
+  height: 20px;
+  padding-left: 10px;
+}
+.edui-ws .edui-state-checked .edui-menuitem-body {
+  background: url("../images/icons-all.gif") no-repeat 6px -205px;
+}
+.edui-ws .edui-state-disabled .edui-menuitem-label {
+  color: gray;
+}
+/*不可选中菜单按钮 */
+
+.edui-ws .edui-toolbar .edui-combox-body .edui-button-body {
+  width: 32px;
+  font-size: 12px;
+  height: 26px;
+  line-height: 26px;
+  padding-left: 5px;
+  white-space: nowrap;
+  margin: 0 3px 0 0;
+  vertical-align: middle;
+}
+.edui-ws .edui-toolbar .edui-combox-body .edui-arrow {
+  /*background: url(../images/icons.png) -741px 0;
+    _background: url(../images/icons.gif) -741px 0;
+    height: 20px;
+    width: 9px;*/
+
+  background: transparent url(../images/edui-arrow.png) no-repeat 0 0;
+  height: 20px;
+  vertical-align: middle;
+  display: inline-block;
+}
+.edui-ws .edui-toolbar .edui-combox .edui-combox-body {
+  /*border: 1px solid #CCC;
+    background-color: white;
+    border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;*/
+
+  border: 1px solid transparent;
+}
+.edui-ws .edui-toolbar .edui-combox-body .edui-splitborder {
+  display: none !important;
+}
+.edui-ws .edui-toolbar .edui-combox-body .edui-arrow {
+  /*border-left: 1px solid #CCC;*/
+
+  margin-right: 5px;
+  width: 10px;
+  background-position: 50% 50%;
+}
+.edui-ws .edui-toolbar .edui-state-hover .edui-combox-body {
+  /*background-color: #fff5d4;
+    border: 1px solid #dcac6c;*/
+
+  border: 1px solid #e7e7eb;
+  background-color: #ffffff;
+}
+.edui-ws .edui-toolbar .edui-state-hover .edui-combox-body .edui-arrow {
+  /*border-left: 1px solid #dcac6c;*/
+}
+.edui-ws .edui-toolbar .edui-state-checked .edui-combox-body {
+  /*background-color: #FFE69F;
+    border: 1px solid #DCAC6C;*/
+}
+.edui-toolbar .edui-state-checked .edui-combox-body .edui-arrow {
+  /*border-left: 1px solid #DCAC6C;*/
+}
+.edui-toolbar .edui-state-disabled .edui-combox-body {
+  /*background-color: #F0F0EE;
+    opacity: 0.3;
+    filter: alpha(opacity = 30);*/
+}
+.edui-toolbar .edui-state-opened .edui-combox-body {
+  /*background-color: white;
+    border: 1px solid gray;*/
+  border: 1px solid #e7e7eb;
+  background-color: #ffffff;
+}
+/*普通按钮样式及状态*/
+
+.edui-ws .edui-toolbar .edui-button .edui-icon,
+.edui-ws .edui-toolbar .edui-menubutton .edui-icon,
+.edui-ws .edui-toolbar .edui-splitbutton .edui-icon {
+  /*height: 20px !important;
+    width: 20px !important;
+    background-image: url(../images/icons.png);
+    background-image: url(../images/icons.gif) \9;*/
+
+  background-image: url(../images/ueditor_z.png);
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  display: inline-block;
+}
+.edui-ws .edui-toolbar .edui-button .edui-button-wrap {
+  /*padding: 1px;*/
+
+  position: relative;
+  border: 1px solid transparent;
+}
+.edui-ws .edui-toolbar .edui-button .edui-state-hover .edui-button-wrap {
+  /*background-color: #fff5d4;
+    padding: 0;
+    border: 1px solid #dcac6c;*/
+
+  border: 1px solid #e7e7eb;
+  background-color: #ffffff;
+}
+.edui-ws .edui-toolbar .edui-button .edui-state-checked .edui-button-wrap {
+  /*background-color: #ffe69f;
+    padding: 0;
+    border: 1px solid #dcac6c;
+    border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;*/
+
+  border: 1px solid #e7e7eb;
+  background-color: #ffffff;
+}
+.edui-ws .edui-toolbar .edui-button .edui-state-active .edui-button-wrap {
+  /*background-color: #ffffff;
+    padding: 0;
+    border: 1px solid gray;*/
+
+  border: 1px solid #e7e7eb;
+  background-color: #ffffff;
+}
+.edui-ws .edui-toolbar .edui-state-disabled .edui-label {
+  color: #ccc;
+}
+.edui-ws .edui-toolbar .edui-state-disabled .edui-icon {
+  opacity: 0.3;
+  filter: alpha(opacity=30);
+}
+/* toolbar icons */
+
+.edui-ws .edui-for-undo .edui-icon {
+  background-position: 0 -138px;
+}
+.edui-ws .edui-for-redo .edui-icon {
+  background-position: 0 -162px;
+}
+.edui-ws .edui-for-bold .edui-icon {
+  background-position: 0 -186px;
+}
+.edui-ws .edui-for-italic .edui-icon {
+  background-position: 0 -210px;
+}
+.edui-ws .edui-for-fontborder .edui-icon {
+  background: transparent url(/mpres/htmledition/images/icon/ueditor/icon_edui_strikethrough.png?__sprite) no-repeat 0 0;
+}
+.edui-ws .edui-for-underline .edui-icon {
+  background-position: 0px -234px;
+}
+.edui-ws .edui-for-strikethrough .edui-icon {
+  background: transparent url(/mpres/htmledition/images/icon/ueditor/icon_edui_strikethrough.png?__sprite) no-repeat 0 0;
+}
+.edui-ws .edui-for-subscript .edui-icon {
+  background: transparent url(/mpres/htmledition/images/icon/ueditor/icon_edui_subscript.png?__sprite) no-repeat 0 0;
+}
+.edui-ws .edui-for-superscript .edui-icon {
+  background: transparent url(/mpres/htmledition/images/icon/ueditor/icon_edui_superscript.png?__sprite) no-repeat 0 0;
+}
+.edui-ws .edui-for-blockquote .edui-icon {
+  background-position: 0px -258px;
+}
+.edui-ws .edui-for-forecolor .edui-icon {
+  background-position: 0px -282px;
+}
+.edui-ws .edui-for-backcolor .edui-icon {
+  background-position: 0px -306px;
+}
+.edui-ws .edui-for-inserttable .edui-icon {
+  /*background: transparent url(/mpres/htmledition/images/icon/ueditor/icon_edui_inserttable.png?__sprite) no-repeat 0 0;*/
+}
+.edui-ws .edui-for-autotypeset .edui-icon {
+  background-image: url("../images/iocn_autotypeset.png") !important;
+  background-repeat: no-repeat;
+  background-position: 4px 2px;
+  background-size: 16px;
+}
+.edui-ws .edui-for-justifyleft .edui-icon {
+  background-position: 0px -330px;
+}
+.edui-ws .edui-for-justifycenter .edui-icon {
+  background-position: 0px -354px;
+}
+.edui-ws .edui-for-justifyright .edui-icon {
+  background-position: 0px -378px;
+}
+.edui-ws .edui-for-justifyjustify .edui-icon {
+  background-position: 0px -402px;
+  /*background: transparent url(/mpres/htmledition/images/icon/ueditor/icon_edui_justifyjustify.png?__sprite) no-repeat 0 0;*/
+}
+.edui-ws .edui-for-insertorderedlist .edui-icon {
+  background-position: 0px -427px;
+}
+.edui-ws .edui-for-insertunorderedlist .edui-icon {
+  background-position: 0px -451px;
+}
+.edui-ws .edui-for-lineheight .edui-icon {
+  background-position: 0px -475px;
+}
+.edui-ws .edui-for-rowspacingbottom .edui-icon {
+  background-position: 0px -499px;
+}
+.edui-ws .edui-for-rowspacingtop .edui-icon {
+  background-position: 0px -523px;
+}
+.edui-ws .edui-for-horizontal .edui-icon {
+  background-position: 0px -547px;
+}
+.edui-ws .edui-for-link .edui-icon {
+  background-position: 0px -571px;
+}
+.edui-ws .edui-for-code .edui-icon {
+  background: transparent url(/mpres/htmledition/images/icon/ueditor/icon_edui_code.png?__sprite) no-repeat 0 0;
+}
+/*小视屏 视频 编辑器上的icon*/
+
+.edui-ws .edui-for-insertvideo2 .edui-icon {
+  background-position: 0px -619px;
+}
+.edui-ws .edui-for-insertimage2 .edui-icon {
+  background-position: 0px -648px;
+}
+.edui-ws .edui-button.edui-for-fullscreen .edui-icon {
+  background-position: 0px 0px;
+  width: 26px;
+  height: 26px;
+  vertical-align: middle;
+}
+.edui-ws .edui-button.edui-for-fullscreen .edui-state-checked .edui-icon {
+  background-position: 2px -30px;
+}
+.edui-ws .edui-for-insertframe .edui-icon {
+}
+.edui-ws .edui-for-emoticon .edui-icon {
+}
+.edui-ws .edui-for-spechars .edui-icon {
+}
+.edui-ws .edui-for-help .edui-icon {
+}
+.edui-ws .edui-for-print .edui-icon {
+}
+.edui-ws .edui-for-preview .edui-icon {
+}
+.edui-ws .edui-for-selectall .edui-icon {
+}
+.edui-ws .edui-for-searchreplace .edui-icon {
+}
+.edui-ws .edui-for-map .edui-icon {
+}
+.edui-ws .edui-for-gmap .edui-icon {
+}
+.edui-ws .edui-for-insertvideo .edui-icon {
+  background-position: 0px -678px;
+}
+.edui-ws .edui-for-time .edui-icon {
+}
+.edui-ws .edui-for-date .edui-icon {
+}
+.edui-ws .edui-for-cut .edui-icon {
+}
+.edui-ws .edui-for-copy .edui-icon {
+}
+.edui-ws .edui-for-paste .edui-icon {
+}
+.edui-ws .edui-for-formatmatch .edui-icon {
+  background-position: 0px -691px;
+}
+.edui-ws .edui-for-pasteplain .edui-icon {
+}
+.edui-ws .edui-for-directionalityltr .edui-icon {
+}
+.edui-ws .edui-for-directionalityrtl .edui-icon {
+}
+.edui-ws .edui-for-source .edui-icon {
+}
+.edui-ws .edui-for-removeformat .edui-icon {
+  background-position: 0px -764px;
+}
+.edui-ws .edui-for-letterspacing .edui-icon {
+  background-position: 0px -812px;
+}
+.edui-ws .edui-for-justifyindent .edui-icon {
+  background-position: 0px -836px;
+}
+.edui-ws .edui-for-unlink .edui-icon {
+  background-position: 0px -860px;
+}
+.edui-ws .edui-for-touppercase .edui-icon {
+}
+.edui-ws .edui-for-tolowercase .edui-icon {
+}
+.edui-ws .edui-for-insertrow .edui-icon {
+}
+.edui-ws .edui-for-insertrownext .edui-icon {
+}
+.edui-ws .edui-for-insertcol .edui-icon {
+}
+.edui-ws .edui-for-insertcolnext .edui-icon {
+}
+.edui-ws .edui-for-mergeright .edui-icon {
+}
+.edui-ws .edui-for-mergedown .edui-icon {
+}
+.edui-ws .edui-for-splittorows .edui-icon {
+}
+.edui-ws .edui-for-splittocols .edui-icon {
+}
+.edui-ws .edui-for-insertparagraphbeforetable .edui-icon {
+}
+.edui-ws .edui-for-deleterow .edui-icon {
+}
+.edui-ws .edui-for-deletecol .edui-icon {
+}
+.edui-ws .edui-for-splittocells .edui-icon {
+}
+.edui-ws .edui-for-mergecells .edui-icon {
+}
+.edui-ws .edui-for-deletetable .edui-icon {
+}
+.edui-ws .edui-for-cleardoc .edui-icon {
+  background-image: url("../images/icon_clear_doc.png") !important;
+  background-repeat: no-repeat;
+  background-position: 2px 2px;
+  background-size: 16px;
+}
+.edui-ws .edui-for-fullscreen .edui-icon {
+}
+.edui-ws .edui-for-anchor .edui-icon {
+}
+.edui-ws .edui-for-pagebreak .edui-icon {
+}
+.edui-ws .edui-for-imagenone .edui-icon {
+  background-position: 0px -884px;
+}
+.edui-ws .edui-for-imageleft .edui-icon {
+  background-position: 0px -908px;
+}
+.edui-ws .edui-for-wordimage .edui-icon {
+  background-position: 0px 0px;
+}
+.edui-ws .edui-for-imageright .edui-icon {
+  background-position: 0px -932px;
+}
+.edui-ws .edui-for-imagecenter .edui-icon {
+  background-position: 0px -956px;
+}
+.edui-ws .edui-for-indent .edui-icon {
+  background-position: 0px -980px;
+}
+.edui-ws .edui-for-outdent .edui-icon {
+}
+.edui-ws .edui-for-webapp .edui-icon {
+}
+.edui-ws .edui-for-table .edui-icon {
+}
+.edui-ws .edui-for-edittable .edui-icon {
+}
+.edui-ws .edui-for-template .edui-icon {
+  background-position: 0 -740px;
+}
+.edui-ws .edui-for-delete .edui-icon {
+}
+.edui-ws .edui-for-attachment .edui-icon {
+}
+.edui-ws .edui-for-edittd .edui-icon {
+}
+.edui-ws .edui-for-snapscreen .edui-icon {
+}
+.edui-ws .edui-for-scrawl .edui-icon {
+}
+.edui-ws .edui-for-background .edui-icon {
+}
+.edui-ws .edui-for-music .edui-icon {
+}
+.edui-ws .edui-for-formula .edui-icon {
+}
+.edui-ws .edui-for-aligntd .edui-icon {
+}
+.edui-ws .edui-for-insertparagraphtrue .edui-icon {
+}
+.edui-ws .edui-for-insertparagraph .edui-icon {
+}
+.edui-ws .edui-for-insertcaption .edui-icon {
+}
+.edui-ws .edui-for-deletecaption .edui-icon {
+}
+.edui-ws .edui-for-inserttitle .edui-icon {
+}
+.edui-ws .edui-for-deletetitle .edui-icon {
+}
+.edui-ws .edui-for-aligntable .edui-icon {
+}
+.edui-ws .edui-for-tablealignment-left .edui-icon {
+}
+.edui-ws .edui-for-tablealignment-center .edui-icon {
+}
+.edui-ws .edui-for-tablealignment-right .edui-icon {
+}
+.edui-ws .edui-for-drafts .edui-icon {
+  background-position: -560px 0;
+}
+.edui-ws .edui-for-charts .edui-icon {
+  background: url(../images/charts.png) no-repeat 2px 3px !important;
+}
+.edui-ws .edui-for-inserttitlecol .edui-icon {
+  background-position: -673px -76px;
+}
+.edui-ws .edui-for-deletetitlecol .edui-icon {
+  background-position: -698px -76px;
+}
+.edui-ws .edui-for-simpleupload .edui-icon {
+  background-position: -380px 0px;
+}
+
+/*splitbutton*/
+
+.edui-ws .edui-toolbar .edui-splitbutton-body .edui-arrow,
+.edui-ws .edui-toolbar .edui-menubutton-body .edui-arrow {
+  /*background: url(../images/icons.png) -741px 0;
+    _background: url(../images/icons.gif) -741px 0;
+    height: 20px;
+    width: 9px;*/
+
+  background: transparent url(../images/edui-arrow.png) no-repeat 0 0;
+  height: 20px;
+  vertical-align: middle;
+  display: inline-block;
+}
+.edui-ws .edui-toolbar .edui-splitbutton-body .edui-arrow {
+  width: 10px;
+  background-position: 50% 50%;
+}
+.edui-ws .edui-toolbar .edui-menubutton-body .edui-arrow {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 0;
+  background-position: 90% 50%;
+}
+.edui-ws .edui-toolbar .edui-splitbutton .edui-splitbutton-body,
+.edui-ws .edui-toolbar .edui-menubutton .edui-menubutton-body {
+  /*padding: 1px;*/
+  border: 1px solid transparent;
+}
+.edui-ws .edui-toolbar .edui-menubutton .edui-menubutton-body {
+  padding-right: 10px;
+}
+.edui-ws .edui-toolbar .edui-splitborder {
+  width: 1px;
+  height: 20px;
+}
+.edui-ws .edui-toolbar .edui-state-hover .edui-splitborder {
+  /*width: 1px;
+    border-left: 0px solid #dcac6c;*/
+}
+.edui-ws .edui-toolbar .edui-state-active .edui-splitborder {
+  width: 0;
+  border-left: 1px solid gray;
+}
+.edui-ws .edui-toolbar .edui-state-opened .edui-splitborder {
+  width: 1px;
+  border: 0;
+}
+.edui-ws .edui-toolbar .edui-splitbutton .edui-state-hover .edui-splitbutton-body,
+.edui-ws .edui-toolbar .edui-menubutton .edui-state-hover .edui-menubutton-body {
+  /*background-color: #fff5d4;
+    border: 1px solid #dcac6c;
+    padding: 0;*/
+
+  border: 1px solid #e7e7eb;
+  background-color: #ffffff;
+}
+.edui-ws .edui-toolbar .edui-splitbutton .edui-state-checked .edui-splitbutton-body,
+.edui-ws .edui-toolbar .edui-menubutton .edui-state-checked .edui-menubutton-body {
+  /*background-color: #FFE69F;
+    border: 1px solid #DCAC6C;
+    padding: 0;*/
+
+  border: 1px solid #e7e7eb;
+  background-color: #ffffff;
+}
+.edui-ws .edui-toolbar .edui-splitbutton .edui-state-active .edui-splitbutton-body,
+.edui-ws .edui-toolbar .edui-menubutton .edui-state-active .edui-menubutton-body {
+  /*background-color: #ffffff;
+    border: 1px solid gray;
+    padding: 0;*/
+
+  border: 1px solid #e7e7eb;
+  background-color: #ffffff;
+}
+.edui-ws .edui-state-disabled .edui-arrow {
+  opacity: 0.3;
+  _filter: alpha(opacity=30);
+}
+.edui-ws .edui-toolbar .edui-splitbutton .edui-state-opened .edui-splitbutton-body,
+.edui-ws .edui-toolbar .edui-menubutton .edui-state-opened .edui-menubutton-body {
+  /*background-color: white;
+    border: 1px solid gray;
+    padding: 0;*/
+}
+.edui-ws .edui-for-insertorderedlist .edui-bordereraser,
+.edui-ws .edui-for-lineheight .edui-bordereraser,
+.edui-ws .edui-for-rowspacingtop .edui-bordereraser,
+.edui-ws .edui-for-rowspacingbottom .edui-bordereraser,
+.edui-ws .edui-for-insertunorderedlist .edui-bordereraser {
+  background-color: white;
+}
+/* 解决嵌套导致的图标问题 */
+
+.edui-ws .edui-for-insertorderedlist .edui-popup-body .edui-icon,
+.edui-ws .edui-for-lineheight .edui-popup-body .edui-icon,
+.edui-ws .edui-for-rowspacingtop .edui-popup-body .edui-icon,
+.edui-ws .edui-for-rowspacingbottom .edui-popup-body .edui-icon,
+.edui-ws .edui-for-insertunorderedlist .edui-popup-body .edui-icon {
+  /*background-position: 0 -40px;*/
+
+  background-image: none;
+}
+/* 弹出菜单 */
+
+.edui-ws .edui-popup {
+  z-index: 3000;
+  background-color: #ffffff;
+  /*width:auto;
+    height:auto;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;*/
+}
+.edui-ws .edui-popup .edui-shadow {
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+.edui-ws .edui-popup-content {
+  /*border:1px solid #ccc;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    *border-right-width: 2px;
+    *border-bottom-width: 2px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    -webkit-box-shadow: 0 3px 4px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 3px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.2);
+    -webkit-background-clip: padding-box;
+    -moz-background-clip: padding;
+    background-clip: padding-box;
+    padding: 5px;
+    background:#ffffff;*/
+
+  border: 1px solid #e7e7eb;
+  *border-right-width: 2px;
+  *border-bottom-width: 2px;
+  -webkit-background-clip: padding-box;
+  -moz-background-clip: padding;
+  background-clip: padding-box;
+  padding: 5px;
+  background: #ffffff;
+}
+.edui-ws .edui-popup .edui-bordereraser {
+  background-color: white;
+  height: 3px;
+}
+.edui-ws .edui-menu .edui-bordereraser {
+  height: 3px;
+}
+.edui-ws .edui-anchor-topleft .edui-bordereraser {
+  left: 1px;
+  top: -2px;
+}
+.edui-ws .edui-anchor-topright .edui-bordereraser {
+  right: 1px;
+  top: -2px;
+}
+.edui-ws .edui-anchor-bottomleft .edui-bordereraser {
+  left: 0;
+  bottom: -6px;
+  height: 7px;
+  border-left: 1px solid gray;
+  border-right: 1px solid gray;
+}
+.edui-ws .edui-anchor-bottomright .edui-bordereraser {
+  right: 0;
+  bottom: -6px;
+  height: 7px;
+  border-left: 1px solid gray;
+  border-right: 1px solid gray;
+}
+.edui-popup div {
+  width: auto;
+  height: auto;
+}
+.edui-ws .edui-editor-messageholder {
+  display: block;
+  width: 150px;
+  height: auto;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 28px;
+  right: 3px;
+}
+.edui-ws .edui-message {
+  min-height: 10px;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+  padding: 0;
+  margin-bottom: 3px;
+  position: relative;
+}
+.edui-ws .edui-message-body {
+  border-radius: 3px;
+  padding: 8px 15px 8px 8px;
+  color: #c09853;
+  background-color: #fcf8e3;
+  border: 1px solid #fbeed5;
+}
+.edui-ws .edui-message-type-info {
+  color: #3a87ad;
+  background-color: #d9edf7;
+  border-color: #bce8f1;
+}
+.edui-ws .edui-message-type-success {
+  color: #468847;
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+}
+.edui-ws .edui-message-type-danger,
+.edui-ws .edui-message-type-error {
+  color: #b94a48;
+  background-color: #f2dede;
+  border-color: #eed3d7;
+}
+.edui-ws .edui-message .edui-message-closer {
+  display: block;
+  width: 16px;
+  height: 16px;
+  line-height: 16px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  float: right;
+  font-size: 20px;
+  font-weight: bold;
+  color: #999;
+  text-shadow: 0 1px 0 #fff;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.edui-ws .edui-message .edui-message-content {
+  font-size: 10pt;
+  word-wrap: break-word;
+  word-break: normal;
+}
+/* 弹出对话框按钮和对话框大小 */
+
+.edui-ws .edui-dialog {
+  z-index: 2000;
+  position: absolute;
+}
+.edui-dialog div {
+  width: auto;
+}
+.edui-ws .edui-dialog-wrap {
+  margin-right: 6px;
+  margin-bottom: 6px;
+}
+.edui-ws .edui-dialog-fullscreen-flag {
+  margin-right: 0;
+  margin-bottom: 0;
+}
+.edui-ws .edui-dialog-body {
+  position: relative;
+  padding: 2px 0 0 2px;
+  _zoom: 1;
+}
+.edui-ws .edui-dialog-fullscreen-flag .edui-dialog-body {
+  padding: 0;
+}
+.edui-ws .edui-dialog-shadow {
+  position: absolute;
+  z-index: -1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  *border-right-width: 2px;
+  *border-bottom-width: 2px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  -webkit-background-clip: padding-box;
+  -moz-background-clip: padding;
+  background-clip: padding-box;
+}
+.edui-ws .edui-dialog-foot {
+  background-color: white;
+}
+.edui-ws .edui-dialog-titlebar {
+  height: 26px;
+  border-bottom: 1px solid #c6c6c6;
+  background: url(../images/dialog-title-bg.png) repeat-x bottom;
+  position: relative;
+  cursor: move;
+}
+.edui-ws .edui-dialog-caption {
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 26px;
+  padding-left: 5px;
+}
+.edui-ws .edui-dialog-draghandle {
+  height: 26px;
+}
+.edui-ws .edui-dialog-closebutton {
+  position: absolute !important;
+  right: 5px;
+  top: 3px;
+}
+.edui-ws .edui-dialog-closebutton .edui-button-body {
+  height: 20px;
+  width: 20px;
+  cursor: pointer;
+  background: url("../images/icons-all.gif") no-repeat 0 -59px;
+}
+.edui-ws .edui-dialog-closebutton .edui-state-hover .edui-button-body {
+  background: url("../images/icons-all.gif") no-repeat 0 -89px;
+}
+.edui-ws .edui-dialog-foot {
+  height: 40px;
+}
+.edui-ws .edui-dialog-buttons {
+  position: absolute;
+  right: 0;
+}
+.edui-ws .edui-dialog-buttons .edui-button {
+  margin-right: 10px;
+}
+.edui-ws .edui-dialog-buttons .edui-button .edui-button-body {
+  background: url("../images/icons-all.gif") no-repeat;
+  height: 24px;
+  width: 96px;
+  font-size: 12px;
+  line-height: 24px;
+  text-align: center;
+  cursor: ws;
+}
+.edui-ws .edui-dialog-buttons .edui-button .edui-state-hover .edui-button-body {
+  background: url("../images/icons-all.gif") no-repeat 0 -30px;
+}
+.edui-ws .edui-dialog iframe {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  vertical-align: top;
+}
+.edui-ws .edui-dialog-modalmask {
+  opacity: 0.3;
+  filter: alpha(opacity=30);
+  background-color: #ccc;
+  position: absolute;
+  /*z-index: 1999;*/
+}
+.edui-ws .edui-dialog-dragmask {
+  position: absolute;
+  /*z-index: 2001;*/
+
+  background-color: transparent;
+  cursor: move;
+}
+.edui-ws .edui-dialog-content {
+  position: relative;
+}
+.edui-ws .dialogcontmask {
+  cursor: move;
+  visibility: hidden;
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  filter: alpha(opacity=0);
+}
+/*link-dialog*/
+
+.edui-ws .edui-for-link .edui-dialog-content {
+  width: 420px;
+  height: 200px;
+  overflow: hidden;
+}
+/*background-dialog*/
+
+.edui-ws .edui-for-background .edui-dialog-content {
+  width: 440px;
+  height: 280px;
+  overflow: hidden;
+}
+/*template-dialog*/
+
+.edui-ws .edui-for-template .edui-dialog-content {
+  width: 630px;
+  height: 390px;
+  overflow: hidden;
+}
+/*scrawl-dialog*/
+
+.edui-ws .edui-for-scrawl .edui-dialog-content {
+  width: 515px;
+  *width: 506px;
+  height: 360px;
+}
+/*spechars-dialog*/
+
+.edui-ws .edui-for-spechars .edui-dialog-content {
+  width: 620px;
+  height: 500px;
+  *width: 630px;
+  *height: 570px;
+}
+/*image-dialog*/
+
+.edui-ws .edui-for-insertimage2 .edui-dialog-content {
+  width: 650px;
+  height: 400px;
+  overflow: hidden;
+}
+/*webapp-dialog*/
+
+.edui-ws .edui-for-webapp .edui-dialog-content {
+  width: 560px;
+  _width: 565px;
+  height: 450px;
+  overflow: hidden;
+}
+/*image-insertframe*/
+
+.edui-ws .edui-for-insertframe .edui-dialog-content {
+  width: 350px;
+  height: 200px;
+  overflow: hidden;
+}
+/*wordImage-dialog*/
+
+.edui-ws .edui-for-wordimage .edui-dialog-content {
+  width: 620px;
+  height: 380px;
+  overflow: hidden;
+}
+/*attachment-dialog*/
+
+.edui-ws .edui-for-attachment .edui-dialog-content {
+  width: 650px;
+  height: 400px;
+  overflow: hidden;
+}
+/*map-dialog*/
+
+.edui-ws .edui-for-map .edui-dialog-content {
+  width: 550px;
+  height: 400px;
+}
+/*gmap-dialog*/
+
+.edui-ws .edui-for-gmap .edui-dialog-content {
+  width: 550px;
+  height: 400px;
+}
+/*video-dialog*/
+
+.edui-ws .edui-for-insertvideo .edui-dialog-content {
+  width: 590px;
+  height: 390px;
+}
+/*anchor-dialog*/
+
+.edui-ws .edui-for-anchor .edui-dialog-content {
+  width: 320px;
+  height: 60px;
+  overflow: hidden;
+}
+/*searchreplace-dialog*/
+
+.edui-ws .edui-for-searchreplace .edui-dialog-content {
+  width: 400px;
+  height: 220px;
+}
+/*help-dialog*/
+
+.edui-ws .edui-for-help .edui-dialog-content {
+  width: 400px;
+  height: 420px;
+}
+/*edittable-dialog*/
+
+.edui-ws .edui-for-edittable .edui-dialog-content {
+  width: 540px;
+  _width: 590px;
+  height: 335px;
+}
+/*edittip-dialog*/
+
+.edui-ws .edui-for-edittip .edui-dialog-content {
+  width: 225px;
+  height: 60px;
+}
+/*edittd-dialog*/
+
+.edui-ws .edui-for-edittd .edui-dialog-content {
+  width: 240px;
+  height: 50px;
+}
+/*snapscreen-dialog*/
+
+.edui-ws .edui-for-snapscreen .edui-dialog-content {
+  width: 400px;
+  height: 220px;
+}
+/*music-dialog*/
+
+.edui-ws .edui-for-music .edui-dialog-content {
+  width: 515px;
+  height: 360px;
+}
+/*段落弹出菜单*/
+
+.edui-ws .edui-for-paragraph .edui-listitem-label {
+  font-family: Tahoma, Verdana, Arial, Helvetica;
+}
+.edui-ws .edui-for-paragraph .edui-listitem-label .edui-for-p {
+  font-size: 22px;
+  line-height: 27px;
+}
+.edui-ws .edui-for-paragraph .edui-listitem-label .edui-for-h1 {
+  font-weight: bolder;
+  font-size: 32px;
+  line-height: 36px;
+}
+.edui-ws .edui-for-paragraph .edui-listitem-label .edui-for-h2 {
+  font-weight: bolder;
+  font-size: 27px;
+  line-height: 29px;
+}
+.edui-ws .edui-for-paragraph .edui-listitem-label .edui-for-h3 {
+  font-weight: bolder;
+  font-size: 19px;
+  line-height: 23px;
+}
+.edui-ws .edui-for-paragraph .edui-listitem-label .edui-for-h4 {
+  font-weight: bolder;
+  font-size: 16px;
+  line-height: 19px;
+}
+.edui-ws .edui-for-paragraph .edui-listitem-label .edui-for-h5 {
+  font-weight: bolder;
+  font-size: 13px;
+  line-height: 16px;
+}
+.edui-ws .edui-for-paragraph .edui-listitem-label .edui-for-h6 {
+  font-weight: bolder;
+  font-size: 12px;
+  line-height: 14px;
+}
+/* 表格弹出菜单 */
+
+.edui-ws .edui-for-inserttable .edui-splitborder {
+  display: none;
+}
+.edui-ws .edui-for-inserttable .edui-splitbutton-body .edui-arrow {
+  width: 0;
+}
+.edui-ws .edui-toolbar .edui-for-inserttable .edui-state-active .edui-splitborder {
+  border-left: 1px solid transparent;
+}
+.edui-ws .edui-tablepicker .edui-infoarea {
+  height: 14px;
+  line-height: 14px;
+  font-size: 12px;
+  width: 220px;
+  margin-bottom: 3px;
+  clear: both;
+}
+.edui-ws .edui-tablepicker .edui-infoarea .edui-label {
+  float: left;
+}
+.edui-ws .edui-dialog-buttons .edui-label {
+  line-height: 24px;
+}
+.edui-ws .edui-tablepicker .edui-infoarea .edui-clickable {
+  float: right;
+}
+.edui-ws .edui-tablepicker .edui-pickarea {
+  background: url("../images/unhighlighted.gif") repeat;
+  height: 220px;
+  width: 220px;
+}
+.edui-ws .edui-tablepicker .edui-pickarea .edui-overlay {
+  background: url("../images/highlighted.gif") repeat;
+}
+/* 颜色弹出菜单 */
+
+.edui-ws .edui-colorpicker-topbar {
+  height: 27px;
+  width: 200px;
+  /*border-bottom: 1px gray dashed;*/
+}
+.edui-ws .edui-colorpicker-preview {
+  height: 20px;
+  border: 1px solid #e7e7eb;
+  margin-left: 1px;
+  width: 128px;
+  float: left;
+}
+.edui-ws .edui-colorpicker-nocolor {
+  float: right;
+  margin-right: 1px;
+  font-size: 12px;
+  line-height: 14px;
+  height: 22px;
+  border: 1px solid #e7e7eb;
+  padding: 3px 5px;
+  cursor: pointer;
+}
+.edui-ws .edui-colorpicker-tablefirstrow {
+  height: 30px;
+}
+.edui-ws .edui-colorpicker-colorcell {
+  width: 14px;
+  height: 14px;
+  display: block;
+  margin: 0;
+  cursor: pointer;
+}
+.edui-ws .edui-colorpicker-colorcell:hover {
+  width: 14px;
+  height: 14px;
+  margin: 0;
+}
+.edui-ws .edui-colorpicker-advbtn {
+  display: block;
+  text-align: center;
+  cursor: pointer;
+  height: 20px;
+}
+.arrow_down {
+  background: white url("../images/arrow_down.png") no-repeat center;
+}
+.arrow_up {
+  background: white url("../images/arrow_up.png") no-repeat center;
+}
+/*高级的样式*/
+
+.edui-colorpicker-adv {
+  position: relative;
+  overflow: hidden;
+  height: 180px;
+  display: none;
+}
+.edui-colorpicker-plant,
+.edui-colorpicker-hue {
+  border: solid 1px #666;
+}
+.edui-colorpicker-pad {
+  width: 150px;
+  height: 150px;
+  left: 14px;
+  top: 13px;
+  position: absolute;
+  background: red;
+  overflow: hidden;
+  cursor: crosshair;
+}
+.edui-colorpicker-cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 150px;
+  height: 150px;
+  background: url("../images/tangram-colorpicker.png") -160px -200px;
+}
+.edui-colorpicker-padDot {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 11px;
+  height: 11px;
+  overflow: hidden;
+  background: url(../images/tangram-colorpicker.png) 0px -200px repeat-x;
+  z-index: 1000;
+}
+.edui-colorpicker-sliderMain {
+  position: absolute;
+  left: 171px;
+  top: 13px;
+  width: 19px;
+  height: 152px;
+  background: url(../images/tangram-colorpicker.png) -179px -12px no-repeat;
+}
+.edui-colorpicker-slider {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+.edui-colorpicker-thumb {
+  position: absolute;
+  top: 0;
+  cursor: pointer;
+  height: 3px;
+  left: -1px;
+  right: -1px;
+  border: 1px solid black;
+  background: white;
+  opacity: 0.8;
+}
+/*自动排版弹出菜单*/
+
+.edui-ws .edui-autotypesetpicker .edui-autotypesetpicker-body {
+  font-size: 12px;
+  margin-bottom: 3px;
+  clear: both;
+}
+.edui-ws .edui-autotypesetpicker-body table {
+  border-collapse: separate;
+  border-spacing: 2px;
+}
+.edui-ws .edui-autotypesetpicker-body td {
+  font-size: 12px;
+  word-wrap: break-word;
+}
+.edui-ws .edui-autotypesetpicker-body td input {
+  margin: 3px 3px 3px 4px;
+  *margin: 1px 0 0 0;
+}
+/*自动排版弹出菜单*/
+
+.edui-ws .edui-cellalignpicker .edui-cellalignpicker-body {
+  width: 70px;
+  font-size: 12px;
+  cursor: ws;
+}
+.edui-ws .edui-cellalignpicker-body table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+.edui-ws .edui-cellalignpicker-body td {
+  padding: 1px;
+}
+.edui-ws .edui-cellalignpicker-body .edui-icon {
+  height: 20px;
+  width: 20px;
+  padding: 1px;
+  background-image: url(../images/table-cell-align.png);
+}
+.edui-ws .edui-cellalignpicker-body .edui-left {
+  background-position: 0 0;
+}
+.edui-ws .edui-cellalignpicker-body .edui-center {
+  background-position: -25px 0;
+}
+.edui-ws .edui-cellalignpicker-body .edui-right {
+  background-position: -51px 0;
+}
+.edui-ws .edui-cellalignpicker-body td.edui-state-hover .edui-left {
+  background-position: -73px 0;
+}
+.edui-ws .edui-cellalignpicker-body td.edui-state-hover .edui-center {
+  background-position: -98px 0;
+}
+.edui-ws .edui-cellalignpicker-body td.edui-state-hover .edui-right {
+  background-position: -124px 0;
+}
+.edui-ws .edui-cellalignpicker-body td.edui-cellalign-selected .edui-left {
+  background-position: -146px 0;
+  background-color: #f1f4f5;
+}
+.edui-ws .edui-cellalignpicker-body td.edui-cellalign-selected .edui-center {
+  background-position: -245px 0;
+}
+.edui-ws .edui-cellalignpicker-body td.edui-cellalign-selected .edui-right {
+  background-position: -271px 0;
+}
+/*分隔线*/
+
+.edui-ws .edui-toolbar .edui-separator {
+  /*width: 2px;
+    height: 20px;
+    margin: 2px 4px 2px 3px;
+    background: url(../images/icons.png) -181px 0;
+    background: url(../images/icons.gif) -181px 0 \9;*/
+
+  width: 1px;
+  height: 20px;
+  background-color: #e7e7eb;
+  margin: 4px 2px;
+}
+/*颜色按钮 */
+
+.edui-ws .edui-toolbar .edui-colorbutton .edui-colorlump {
+  position: absolute;
+  overflow: hidden;
+  bottom: 1px;
+  left: 1px;
+  width: 18px;
+  height: 4px;
+}
+/*表情按钮及弹出菜单*/
+/*去除了表情的下拉箭头*/
+
+.edui-ws .edui-for-emotion .edui-icon {
+  background-position: 0px -788px;
+}
+.edui-ws .edui-for-emotion .edui-popup-content iframe {
+  width: 514px;
+  height: 380px;
+  overflow: hidden;
+}
+.edui-ws .edui-for-emotion .edui-popup-content {
+  position: relative;
+  z-index: 555;
+}
+.edui-ws .edui-for-emotion .edui-splitborder {
+  display: none;
+}
+.edui-ws .edui-for-emotion .edui-splitbutton-body .edui-arrow {
+  width: 0;
+}
+.edui-ws .edui-toolbar .edui-for-emotion .edui-state-active .edui-splitborder {
+  border-left: 1px solid transparent;
+}
+/*contextmenu*/
+
+.edui-ws .edui-hassubmenu .edui-arrow {
+  height: 20px;
+  width: 20px;
+  float: right;
+  background: url("../images/icons-all.gif") no-repeat 10px -233px;
+}
+.edui-ws .edui-menu-body .edui-menuitem {
+  padding: 1px;
+}
+.edui-ws .edui-menuseparator {
+  margin: 2px 0;
+  height: 1px;
+  overflow: hidden;
+}
+.edui-ws .edui-menuseparator-inner {
+  border-bottom: 1px solid #e2e3e3;
+  margin-left: 29px;
+  margin-right: 1px;
+}
+.edui-ws .edui-menu-body .edui-state-hover {
+  /*padding: 0 !important;
+    background-color: #fff5d4;
+    border: 1px solid #dcac6c;*/
+
+  padding: 0 !important;
+  background-color: #f4f5f9;
+  border: 1px solid #e7e7eb;
+}
+/*弹出菜单*/
+
+.edui-ws .edui-shortcutmenu {
+  padding: 2px;
+  width: 190px;
+  height: 50px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+/*粘贴弹出菜单*/
+
+.edui-ws .edui-wordpastepop .edui-popup-content {
+  border: none;
+  padding: 0;
+  width: 54px;
+  height: 21px;
+}
+.edui-ws .edui-pasteicon {
+  width: 100%;
+  height: 100%;
+  background-image: url("../images/wordpaste.png");
+  background-position: 0 0;
+}
+.edui-ws .edui-pasteicon.edui-state-opened {
+  background-position: 0 -34px;
+}
+.edui-ws .edui-pastecontainer {
+  position: relative;
+  visibility: hidden;
+  width: 97px;
+  background: #fff;
+  border: 1px solid #ccc;
+}
+.edui-ws .edui-pastecontainer .edui-title {
+  font-weight: bold;
+  background: #f8f8ff;
+  height: 25px;
+  line-height: 25px;
+  font-size: 12px;
+  padding-left: 5px;
+}
+.edui-ws .edui-pastecontainer .edui-button {
+  overflow: hidden;
+  margin: 3px 0;
+}
+.edui-ws .edui-pastecontainer .edui-button .edui-richtxticon,
+.edui-ws .edui-pastecontainer .edui-button .edui-tagicon,
+.edui-ws .edui-pastecontainer .edui-button .edui-plaintxticon {
+  float: left;
+  cursor: pointer;
+  width: 29px;
+  height: 29px;
+  margin-left: 5px;
+  background-image: url("../images/wordpaste.png");
+  background-repeat: no-repeat;
+}
+.edui-ws .edui-pastecontainer .edui-button .edui-richtxticon {
+  margin-left: 0;
+  background-position: -109px 0;
+}
+.edui-ws .edui-pastecontainer .edui-button .edui-tagicon {
+  background-position: -148px 1px;
+}
+.edui-ws .edui-pastecontainer .edui-button .edui-plaintxticon {
+  background-position: -72px 0;
+}
+.edui-ws .edui-pastecontainer .edui-button .edui-state-hover .edui-richtxticon {
+  background-position: -109px -34px;
+}
+.edui-ws .edui-pastecontainer .edui-button .edui-state-hover .edui-tagicon {
+  background-position: -148px -34px;
+}
+.edui-ws .edui-pastecontainer .edui-button .edui-state-hover .edui-plaintxticon {
+  background-position: -72px -34px;
+}
+.edui-toolbar-primary {
+  position: relative;
+  background-color: #f4f5f9;
+}
+.edui-ws .edui-toolbar.edui-toolbar-primary .edui-button,
+.edui-ws .edui-toolbar.edui-toolbar-primary .edui-splitbutton,
+.edui-ws .edui-toolbar.edui-toolbar-primary .edui-menubutton,
+.edui-ws .edui-toolbar.edui-toolbar-primary .edui-combox {
+  margin: 1px 4px;
+}
+.edui-ws .edui-toolbar.edui-toobar-secondary {
+  display: none;
+  padding-left: 4px;
+}
+.show-edui-more .edui-ws .edui-toolbar.edui-toobar-secondary {
+  display: block;
+}
+.edui-editor-toolbarbox.show-edui-more .edui-for-more .edui-button-wrap {
+  border: 1px solid #e7e7eb;
+  background-color: #ffffff;
+}
+.icon_edui_zoom {
+  position: absolute;
+  right: 4px;
+  top: 2px;
+  width: 26px;
+  height: 26px;
+  vertical-align: middle;
+  display: inline-block;
+  line-height: 100px;
+  overflow: hidden;
+  border: 1px solid transparent;
+}
+.icon_edui_zoom.zoom_out_switch {
+  background: url(../images/ueditor_z.png) 0px 0px no-repeat;
+}
+.icon_edui_zoom.zoom_in_switch {
+  display: none;
+  background: url(../images/ueditor_z.png) 0px -36px no-repeat;
+}
+.icon_edui_zoom:hover {
+  border: 1px solid #e7e7eb;
+  background-color: #ffffff;
+}
+.edui-ws .edui-button.edui-for-more .edui-icon {
+  background: url(../images/ueditor_z.png) 0px -72px no-repeat;
+  width: 26px;
+  height: 26px;
+  vertical-align: middle;
+  display: inline-block;
+}
+.edui-ws .edui-for-insertvote .edui-icon {
+  background: url(../images/ueditor_z.png) 0px -108px no-repeat;
+}
+.edui-ws .edui-for-insertcard .edui-icon {
+  background: url(../images/ueditor_z.png) 0px -138px no-repeat;
+}
+
+.edui_editor_wrp {
+  position: relative;
+  z-index: 0;
+}
