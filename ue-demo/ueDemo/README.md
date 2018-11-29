@@ -18,6 +18,14 @@ npm run build
 npm run build --report
 ```
 
+## 官方demo
+
+https://ueditor.baidu.com/website/onlinedemo.html
+
+## 文档
+
+http://fex.baidu.com/ueditor/
+
 ## 主题切换
 
 ueditor.config.js 文件中修改配置 `theme: "ws"`, 支持的主题 default，ws
