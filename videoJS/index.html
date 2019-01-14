@@ -368,6 +368,7 @@
               adDom, // 暂停广告el
               articleBox = document.querySelector(".live-article"),
               articleCon = document.querySelector(".live-content"),
+              articleTitle = document.querySelector(".live-title"),
               _res = res || {
                 code: 2000,
                 msg: "请求成功",
@@ -413,7 +414,7 @@
             document.querySelector(".live-content").innerText = _res.data.live_content; // 直播详情
 
             // 显示全文
-            if (articleCon.offsetHeight > parseInt(getCss(articleBox, "maxHeight"))) {
+            if (articleCon.offsetHeight + parseInt(getCss(articleTitle, "height")) > parseInt(getCss(articleBox, "maxHeight"))) {
               showM = document.querySelector(".showMore");
               showM.style.display = "block";
               document.querySelector(".showMoreBtn").addEventListener("click", function(e) {

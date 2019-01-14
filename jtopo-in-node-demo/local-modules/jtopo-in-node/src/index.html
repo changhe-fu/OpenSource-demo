@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HTML5拓扑图</title>
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+</head>
+<body>
+<div>
+    <canvas id="canvas"  width="800" height="600"></canvas>
+    <canvas id="canvas2" width="800" height="600"></canvas>
+    <canvas id="canvas3" width="800" height="600"></canvas>
+	<canvas id="canvas4" width="800" height="600"></canvas>
+</div>
+<script type="text/javascript" src="JTopo.js"></script>
+<script type="text/javascript">
+	function newLink(nodeA, nodeZ, text){
+			var link = new JTopo.Link(nodeA, nodeZ, text);
+			link.lineWidth = 3; // 线宽
+			link.bundleOffset = 80; // 折线拐角处的长度
+			link.bundleGap = 40; // 线条之间的间隔
+			link.textOffsetY = 3; // 文本偏移量（向下3个像素）
+			link.strokeColor = '0,200,255';
+			link.arrowsRadius = 10;
+			link.fontColor ="0,0,0";
+			this.add(link);
+	}
+
+
+	//图形关系 自动布局  数据序列化 反序列化 
+	(function(){
+		var canvas = document.getElementById('canvas');
+		var canvas2 = document.getElementById('canvas2');
+		var stage = new JTopo.Stage(canvas);
+		var scene = new JTopo.Scene(stage);
+		//scene.backgroundColor="255,240,202";
+		scene.background="./img/Desert.jpg";
+		scene.alpha=1;
+		var keyArray=["a","b","c","d","e","f","g","h","i","j","k"];
+		for(var i=0;i<keyArray.length;i++){
+			var key = keyArray[i];
+			var node = new JTopo.Node(key);
+			node.id = key;
+			node.fontColor ="0,0,0"
+			node.setImage('./img/house.png');
+			node.setSize(40,40);
+			scene.add(node);
+		}
+		var nodeA = scene.findElements(function(e){ return e.id == "a"; })[0];
+		var nodeB = scene.findElements(function(e){ return e.id == "b"; })[0];
+		var nodeC = scene.findElements(function(e){ return e.id == "c"; })[0];
+		var nodeD = scene.findElements(function(e){ return e.id == "d"; })[0];
+		var nodeE = scene.findElements(function(e){ return e.id == "e"; })[0];
+		var nodeF = scene.findElements(function(e){ return e.id == "f"; })[0];
+		var nodeG = scene.findElements(function(e){ return e.id == "g"; })[0];
+		var nodeH = scene.findElements(function(e){ return e.id == "h"; })[0];
+		var nodeI = scene.findElements(function(e){ return e.id == "i"; })[0];
+		var nodeJ = scene.findElements(function(e){ return e.id == "j"; })[0];
+		var nodeK = scene.findElements(function(e){ return e.id == "k"; })[0];
+		newLink.call(scene,nodeA,nodeB);
+		newLink.call(scene,nodeA,nodeC);
+		newLink.call(scene,nodeA,nodeD);
+		newLink.call(scene,nodeA,nodeE);
+		newLink.call(scene,nodeA,nodeF);
+		newLink.call(scene,nodeB,nodeG);
+		newLink.call(scene,nodeB,nodeI);
+		newLink.call(scene,nodeC,nodeG);
+		newLink.call(scene,nodeC,nodeH);
+		newLink.call(scene,nodeE,nodeF);
+		newLink.call(scene,nodeF,nodeK);
+		newLink.call(scene,nodeI,nodeJ);
+		newLink.call(scene,nodeI,nodeK);
+		newLink.call(scene,nodeJ,nodeG);
+		
+		//自动布局
+		JTopo.Layout.layoutGraph(scene, nodeA, -1,null,function(){
+			console.log("开始布局");
+		},function(){
+			console.log("结束布局");
+			//序列化
+			var data = JTopo.seriailzeToJSON(stage);
+			//反序列化
+			JTopo.deSeriailzeByJSON(data,canvas2);
+		});
+	})();
+
+	// 多位置文本 换行节点 
+	(function(){
+		var canvas = document.getElementById('canvas3');
+		var stage = new JTopo.Stage(canvas);
+		var scene = new JTopo.Scene(stage);
+		scene.backgroundColor="255,240,202";
+		scene.alpha=1;
+		var a = new JTopo.Node({
+			top_center:{text: "T-C", fontColor:"0,0,255"},
+			top_left:{text: "T-L", fontColor:"0,0,0"},
+			top_right:{text: "T-R", fontColor:"128,0,0"},
+			middle_right:{text: "M-R"},
+			middle_left:{text: "M-L"},
+			middle_center:{text: "M-C"},
+			bottom_right:{text: "B-R",font:"18px 隶书"},
+			bottom_left:{text: "B-L", font:"18px 微软雅黑"},
+			bottom_center:{text: "B-C\nabc\ndef", font:"12px 黑体",lineSpace:10}
+		});
+		a.setSize(100, 100);
+		a.fontColor ="0,0,0"
+		a.setLocation(150,200);
+		
+		var b = new JTopo.CircleNode("这是第一行\n这是第二行\n这是第三行\n默认是在底部_居中");
+		b.radius = 50;
+		b.fontColor = "0,0,0";
+		b.setLocation(550,200);
+
+		scene.add(a);
+		scene.add(b);
+	})();
+	//同节点正向、逆向线同时存在BUG修正
+	(function(){
+		var canvas = document.getElementById('canvas4');
+		var stage = new JTopo.Stage(canvas);
+		var scene = new JTopo.Scene(stage);
+		scene.backgroundColor="255,240,202";
+		scene.alpha=1;
+		var a = new JTopo.Node("from");
+		var b = new JTopo.Node("to");
+		a.setLocation(150,80);
+		a.fontColor = "0,0,0";
+		b.setLocation(550,200);
+		b.fontColor = "0,0,0";
+		scene.add(a);
+		scene.add(b);
+		newLink.call(scene,a,b,"A_TO_B");
+		newLink.call(scene,b,a,"B_TO_A");
+	})()
+</script>
+</body>
+</html>

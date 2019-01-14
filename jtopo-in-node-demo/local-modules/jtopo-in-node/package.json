@@ -1,0 +1,15 @@
+{
+  "name": "jtopo-in-node",
+  "version": "1.0.1",
+  "description": "感谢 jtopo 原作者，这个版本的JTopo跟原版（0.48.1）的区别不大",
+  "main": "src/jtopo.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "jtopo",
+    "Topology"
+  ],
+  "author": "",
+  "license": "ISC"
+}
