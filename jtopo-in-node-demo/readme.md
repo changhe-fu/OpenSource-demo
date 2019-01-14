@@ -15,3 +15,4 @@ npm run build
 ```
 
 打开 ~/dist 目录下的 index.html 文件，就能在浏览器看到 jtopo 页面
+![show](./show.png)
