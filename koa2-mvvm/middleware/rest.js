@@ -4,8 +4,10 @@ module.exports = {
         this.message = message || '';
     },
     restify: (pathPrefix) => {
+        // REST API 前缀，默认为 /api/:
         pathPrefix = pathPrefix || '/api/';
         return async (ctx, next) => {
+            // 根据 path 来判断当前请求是否是一个 REST 请求
             if (ctx.request.path.startsWith(pathPrefix)) {
                 console.log(`Process API ${ctx.request.method} ${ctx.request.url}...`);
                 ctx.rest = (data) => {
