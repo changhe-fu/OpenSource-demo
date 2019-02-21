@@ -1,6 +1,3 @@
-/**
- * Created by linyuhua on 2017/1/14.
- */
 define(function (require, exports, module) {
     var init= function() {
         var textContent = [

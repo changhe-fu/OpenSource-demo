@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>下载</title>
+    <!--[if IE]> <script type="text/javascript" src="<script type="text/javascript" src="excanvas.compiled.js"></script> <![endif]-->
+    <style>
+      .outline {
+        outline: 2px solid red;
+        outline-offset: -2px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <section>
+      <h2>Div的内容：</h2>
+      <div id="div" style="width: 500px;border: 1px solid #eee;background-color: #fefefe;">
+        <p>纤云弄巧，飞星传恨，银汉迢迢暗渡。</p>
+        <p>金风玉露一相逢，便胜却人间无数。</p>
+        <p>柔情似水，佳期如梦，忍顾鹊桥归路。</p>
+        <p>两情若是久长时，又岂在朝朝暮暮。</p>
+        <div><img src="./eg_planets.jpg" alt="asd" /></div>
+        <img src="./eg_planets.jpg" alt="asd" />
+      </div>
+      <button id="downLoad">download</button>
+      <h2>生成图片:</h2>
+      <div id="imgBox"></div>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.min.js"></script>
+    <script src="./dom-to-image.min.js"></script>
+    <script>
+      var MultiDownload = {
+        _download: function(params) {
+          if (params) {
+            throw new Error("params is null!");
+            return;
+          }
+          var triggerDelay = params.delay || 100; // 触发延迟
+          var removeDelay = params.removeDelay || 1000;
+          var _self = this;
+          if (params.type === "server") {
+            params.source.each(function(index, item) {
+              _self._createIFrame(item, index * triggerDelay, removeDelay);
+            });
+          }
+          if (params.type === "local") {
+            params.source.each(function(index, item) {
+              _self._createLink(item, index * triggerDelay, removeDelay);
+            });
+          }
+        },
+        _createIFrame: function(url, triggerDelay, removeDelay) {
+          //动态添加iframe，设置src，然后删除
+          setTimeout(function() {
+            var frame = $('<iframe style="display: none;" class="multi-download"></iframe>');
+            frame.attr("src", url.src);
+            $(document.body).after(frame);
+            setTimeout(function() {
+              frame.remove();
+            }, removeDelay);
+          }, triggerDelay);
+        },
+        //download属性设置
+        _createLink: function(url, triggerDelay, removeDelay) {
+          var a = document.createElement("a");
+          a.setAttribute("download", url.name);
+          a.setAttribute("cursor", "pointer");
+          a.setAttribute("id", "img" + triggerDelay);
+          a.href = url.src;
+          document.body.appendChild(a);
+          var t = document.getElementById("img" + triggerDelay);
+          if (document.dispatchEvent) {
+            var o = document.createEvent("MouseEvents");
+            o.initMouseEvent("click", true, true, window, 1, 1, 1, 1, 1, false, false, false, false, 0, t);
+            t.dispatchEvent(o);
+          } else if (document.fireEvent) {
+            t.fireEvent("onclick");
+          } else if (t.click()) {
+            t.click();
+          }
+        }
+      };
+
+      var myDown = Object.create(MultiDownload);
+    </script>
+    <script>
+      document.querySelector("#downLoad").addEventListener("click", function() {
+        var node = document.getElementById("div");
+
+        domtoimage.toPng(node).then(function(dataUrl) {
+          var img = new Image();
+          img.src = dataUrl;
+          document.querySelector("#imgBox").appendChild(img);
+        });
+        // .catch(function(err) {
+        // console.log(err);
+        // });
+      });
+
+      function divToImage() {
+        // ---------------------开始------------------
+        //1.将div转成svg
+        var mydiv = document.getElementById("div");
+        var divW = parseInt(mydiv.style.width);
+        var divH = parseInt(mydiv.style.height);
+        var divContent = mydiv.innerHTML;
+        var data = "data:image/svg+xml," + "<svg xmlns='http://www.w3.org/2000/svg' width='" + divW + "' height='" + divH + "'>" + "<foreignObject width='100%' height='100%'>" + "<body  xmlns='http://www.w3.org/1999/xhtml' style='font-size:16px;font-family:Helvetica'>" + divContent + "</body>" + "</foreignObject>" + "</svg>";
+        var img = new Image();
+        img.src = data;
+        console.log("data", data);
+        if (img.complete) {
+          console.log("img.complete");
+        } else {
+          img.onload = function() {
+            // 确保图片加载完成
+            console.log("img.onload");
+
+            console.log(img);
+            console.log(img.width);
+            document.getElementById("imgBox").appendChild(img);
+
+            // 2.svg转成canvas
+
+            var canvas = document.createElement("canvas"); //准备空画布
+            if (!canvas.getContext) {
+              G_vmlCanvasManager.initElement(canvas);
+            }
+            canvas.width = img.width;
+            canvas.height = img.height;
+
+            var context = canvas.getContext("2d"); // 取得画布的2d绘图上下文
+            context.drawImage(img, 0, 0);
+
+            // 3. 图片导出为 png 格式
+            var type = "png";
+            var imgData = canvas.toDataURL(type);
+
+            /**
+             * 获取 mimeType
+             * 将 mime-type 改为 image/octet-stream，强制让浏览器直接download
+             * @param  {String} type the old mime-type
+             * @return the new mime-type
+             */
+            var _fixType = function(type) {
+              type = type.toLowerCase().replace(/jpg/i, "jpeg");
+              var r = type.match(/png|jpeg|bmp|gif/)[0];
+              return "image/" + r;
+            };
+
+            // 加工image data，替换mime type
+            imgData = imgData.replace(_fixType(type), "image/octet-stream");
+
+            // 下载后的图片名
+            myDown._download({ type: "local", source: [{ name: "my" + new Date().getTime() + "." + type, src: imgData }] });
+
+            img.onload = null;
+          };
+          img.onerror = function() {
+            // 图片加载错误！
+            console.log("img.onerror");
+          };
+        }
+      }
+    </script>
+  </body>
+</html>
