@@ -1,4 +1,5 @@
 // Sequelize Docs 中文版 https://github.com/demopark/sequelize-docs-Zh-CN
+// 官方文档 http://docs.sequelizejs.com/manual/installation/getting-started.html
 const Sequelize = require("sequelize");
 
 const uuid = require("node-uuid");
